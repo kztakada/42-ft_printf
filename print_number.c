@@ -6,58 +6,38 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 18:04:58 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/10 18:12:41 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:45:36 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(long n)
-{
-	int	count;
-
-	count = 0;
-	if (n < 0)
-	{
-		count += ft_putchar('-');
-		count += ft_putnbr(-n);
-	}
-	else if (n >= 10)
-	{
-		count += ft_putnbr(n / 10);
-		count += ft_putchar(n % 10 + '0');
-	}
-	else
-		count += ft_putchar(n + '0');
-	return (count);
-}
-
-int	ft_putnbr_base(unsigned long n, char *base)
+int	ft_putnbr_base(unsigned long n, char *base, int fd)
 {
 	int	count;
 
 	count = 0;
 	if (n >= 16)
 	{
-		count += ft_putnbr_base(n / 16, base);
-		count += ft_putchar(base[n % 16]);
+		count += ft_putnbr_base(n / 16, base, fd);
+		count += ft_putchar_fd(base[n % 16], fd);
 	}
 	else
-		count += ft_putchar(base[n]);
+		count += ft_putchar_fd(base[n], fd);
 	return (count);
 }
 
-int	ft_putnbr_unsigned(unsigned long n)
+int	ft_putnbr_unsigned(unsigned long n, int fd)
 {
 	int	count;
 
 	count = 0;
 	if (n >= 10)
 	{
-		count += ft_putnbr(n / 10);
-		count += ft_putchar(n % 10 + '0');
+		count += ft_putnbr_fd((n / 10), fd);
+		count += ft_putchar_fd((n % 10 + '0'), fd);
 	}
 	else
-		count += ft_putchar(n + '0');
+		count += ft_putchar_fd((n + '0'), fd);
 	return (count);
 }

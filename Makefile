@@ -6,13 +6,13 @@
 #    By: katakada <katakada@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:55:18 by katakada          #+#    #+#              #
-#    Updated: 2024/09/10 18:09:24 by katakada         ###   ########.fr        #
+#    Updated: 2024/09/11 18:05:33 by katakada         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c print_text.c print_number.c print_pointer.c
+SRCS = ft_printf.c print_number.c print_pointer.c
 LIBFT = ./libft/libft.a
 OBJS = $(SRCS:.c=.o)
 CC = cc
