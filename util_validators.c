@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validator.c                                        :+:      :+:    :+:   */
+/*   validators.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 23:31:45 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/12 00:23:29 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:51:43 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ int	is_precision_dot(int c)
 int	is_number_type(int c)
 {
 	return (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X');
+}
+
+int	is_format_type(int c)
+{
+	return (c == 'c' || c == 's' || c == 'p' || c == '%' || is_number_type(c));
 }
