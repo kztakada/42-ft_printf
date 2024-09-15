@@ -6,11 +6,16 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:07:58 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/13 23:41:57 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:11:52 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#ifdef __linux__
+# define ISLINUX 1
+#else
+# define ISLINUX 0
+#endif
 
 int	print_spaces(int width, int fd)
 {
@@ -74,9 +79,20 @@ int	printer(int fd, t_flags *flags, va_list *args)
 
 int	print_unformat(const char **format, int fd)
 {
-	if (ft_putchar_fd(**format, fd) < 0)
-		return (-1);
-	return (1);
+	if (ISLINUX == 1)
+	{
+		if (ft_putchar_fd(*--(*format), fd) < 0)
+			return (-1);
+		if (ft_putchar_fd(*++(*format), fd) < 0)
+			return (-1);
+		return (2);
+	}
+	else
+	{
+		if (ft_putchar_fd(**format, fd) < 0)
+			return (-1);
+		return (1);
+	}
 }
 
 int	output_format(const char **format, t_flags *flags, va_list *args, int fd)
