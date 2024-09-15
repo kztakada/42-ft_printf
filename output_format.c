@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:07:58 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/15 15:11:52 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:28:07 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 # define ISLINUX 0
 #endif
 
-int	print_spaces(int width, int fd)
+int	print_spaces(int width, int fd, int c)
 {
 	int	count;
 
 	count = 0;
 	while (width-- > 0)
 	{
-		if (ft_putchar_fd(' ', fd) < 0)
+		if (ft_putchar_fd(c, fd) < 0)
 			return (-1);
 		count++;
 	}
@@ -41,12 +41,17 @@ int	print_char(int c, t_flags *flags, int fd)
 	flags->charactors = 1;
 	set_char_space_conf(flags);
 	if (flags->is_minus == 0)
-		space_count = print_spaces(flags->min_width - 1, fd);
+	{
+		if (ISLINUX == 1)
+			space_count = print_spaces(flags->min_width - 1, fd, ' ');
+		if (ISLINUX == 0)
+			space_count = print_spaces(flags->min_width - 1, fd, '0');
+	}
 	if (ft_putchar_fd(c, fd) < 0)
 		return (-1);
 	count++;
 	if (flags->is_minus == 1)
-		space_count = print_spaces(flags->min_width - 1, fd);
+		space_count = print_spaces(flags->min_width - 1, fd, ' ');
 	if (space_count < 0)
 		return (-1);
 	return (count + space_count);
