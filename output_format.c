@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:07:58 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/15 20:53:49 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/16 00:17:51 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,6 @@
 # define ISLINUX 0
 #endif
 #include <stdio.h>
-
-int	print_loop(int loop_times, int fd, int c)
-{
-	int	count;
-
-	count = 0;
-	while (loop_times-- > 0)
-	{
-		if (ft_putchar_fd(c, fd) < 0)
-			return (-1);
-		count++;
-	}
-	return (count);
-}
 
 int	print_char(int c, t_flags *flags, int fd)
 {
@@ -88,123 +74,6 @@ int	print_str(char *str, t_flags *flags, int fd)
 	return (count + space_count);
 }
 
-int	print_sign(t_flags *flags, int fd)
-{
-	int	count;
-
-	count = 0;
-	if (flags->sign == -1)
-		count += ft_putchar_fd('-', fd);
-	else if (flags->is_plus == 1)
-		count += ft_putchar_fd('+', fd);
-	else if (flags->is_space == 1)
-		count += ft_putchar_fd(' ', fd);
-	if (count < 0)
-		return (-1);
-	return (count);
-}
-
-int	print_left_shift(int fd, t_flags *flags)
-{
-	int	count;
-	int	cnt_tmp;
-
-	cnt_tmp = 0;
-	if (flags->is_minus == 1 || flags->is_zero == 1)
-		count = print_sign(flags, fd);
-	else
-		return (0);
-	if (count < 0)
-		return (-1);
-	if (count == 1)
-	{
-		if (flags->is_minus == 1)
-			cnt_tmp = print_loop(flags->precision, fd, '0');
-		if (cnt_tmp < 0)
-			return (-1);
-		count += cnt_tmp;
-		if (flags->is_zero == 1 && flags->precision != -1)
-			cnt_tmp = print_loop(flags->min_width - flags->precision, fd, '0');
-		if (cnt_tmp < 0)
-			return (-1);
-		count += cnt_tmp;
-	}
-	return (count);
-}
-
-int	print_right_shift(int fd, t_flags *flags)
-{
-	int	count;
-	int	cnt_tmp;
-
-	count = 0;
-	cnt_tmp = 0;
-	if (flags->is_minus == 0)
-	{
-		if (flags->is_zero != 1)
-		{
-			cnt_tmp = print_loop(flags->min_width, fd, ' ');
-			if (cnt_tmp < 0)
-				return (-1);
-			count += cnt_tmp;
-			cnt_tmp = print_sign(flags, fd);
-			if (cnt_tmp < 0)
-				return (-1);
-			count += cnt_tmp;
-		}
-		cnt_tmp = print_loop(flags->precision, fd, '0');
-		if (cnt_tmp < 0)
-			return (-1);
-		count += cnt_tmp;
-	}
-	return (count);
-}
-int	print_put_nbr(int fd, t_flags *flags, long output_nbr)
-{
-	int	count;
-	int	cnt_tmp;
-
-	cnt_tmp = 0;
-	if (flags->charactors != 0)
-		cnt_tmp = ft_putnbr_fd(output_nbr, fd);
-	if (cnt_tmp < 0)
-		return (-1);
-	count = cnt_tmp;
-	if (flags->is_minus == 1)
-	{
-		cnt_tmp = print_loop(flags->min_width, fd, ' ');
-		if (cnt_tmp < 0)
-			return (-1);
-		count += cnt_tmp;
-	}
-	return (count);
-}
-
-int	print_nbr(int n, t_flags *flags, int fd)
-{
-	int		count;
-	int		cnt_tmp;
-	long	output_nbr;
-
-	count = 0;
-	cnt_tmp = 0;
-	output_nbr = (long)n;
-	set_nbr_print_conf(flags, &output_nbr);
-	cnt_tmp = print_left_shift(fd, flags);
-	if (cnt_tmp < 0)
-		return (-1);
-	count += cnt_tmp;
-	cnt_tmp = print_right_shift(fd, flags);
-	if (cnt_tmp < 0)
-		return (-1);
-	count += cnt_tmp;
-	cnt_tmp = print_put_nbr(fd, flags, output_nbr);
-	if (cnt_tmp < 0)
-		return (-1);
-	count += cnt_tmp;
-	return (count);
-}
-
 int	printer(int fd, t_flags *flags, va_list *args)
 {
 	if (flags->type == 'c')
@@ -212,7 +81,7 @@ int	printer(int fd, t_flags *flags, va_list *args)
 	if (flags->type == 's')
 		return (print_str(va_arg(*args, char *), flags, fd));
 	if (flags->type == 'd' || flags->type == 'i')
-		return (print_nbr(va_arg(*args, int), flags, fd));
+		return (print_int(va_arg(*args, int), flags, fd));
 	if (flags->type == 'x')
 		return (ft_putnbr_base((unsigned long)va_arg(*args, unsigned int),
 				HEX_LOWER, fd));

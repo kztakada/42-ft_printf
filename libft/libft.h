@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 17:13:09 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/11 17:40:35 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/15 23:32:58 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 int					ft_putchar_fd(char c, int fd);
 int					ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
-int					ft_putnbr_fd(int n, int fd);
+int					ft_putnbr_fd(long n, int fd);
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);

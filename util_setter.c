@@ -6,11 +6,12 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 23:20:28 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/15 18:35:25 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/15 23:28:12 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	set_char_print_conf(t_flags *flags)
 {

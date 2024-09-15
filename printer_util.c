@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   printer_util.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 17:51:50 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/15 23:32:38 by katakada         ###   ########.fr       */
+/*   Created: 2024/09/16 00:17:11 by katakada          #+#    #+#             */
+/*   Updated: 2024/09/16 00:17:22 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_putnbr_fd(long n, int fd)
+int	print_loop(int loop_times, int fd, int c)
 {
-	long	number;
-	int		count;
+	int	count;
 
-	number = n;
 	count = 0;
-	if (number < 0)
+	while (loop_times-- > 0)
 	{
-		count += ft_putchar_fd('-', fd);
-		number *= -1;
+		if (ft_putchar_fd(c, fd) < 0)
+			return (-1);
+		count++;
 	}
-	if (number >= 10)
-		count += ft_putnbr_fd((number / 10), fd);
-	count += ft_putchar_fd((number % 10 + '0'), fd);
 	return (count);
 }
