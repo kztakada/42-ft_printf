@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 20:13:37 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/18 21:30:52 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		print_int(int n, t_flags *flags, int fd);
 int		print_loop(int loop_times, int fd, int c);
 
 int		ft_putnbr_base(unsigned long n, char *base, int fd);
-int		ft_putnbr_base_p(uintptr_t n, char *base, int fd);
+int		ft_putnbr_base_p(unsigned long long n, char *base, int fd);
 int		ft_putnbr_unsigned(unsigned long n, int fd);
 
 int		is_flag(int c);
@@ -59,6 +59,7 @@ void	parse_format(const char **format, t_flags *flags);
 
 void	set_char_print_conf(t_flags *flags);
 void	set_str_print_conf(t_flags *flags, char *str);
+void	set_ptr_print_conf(t_flags *flags, unsigned long long output_ptr);
 void	set_int_print_conf(t_flags *flags, long *output_nbr);
 
 long	get_abs(long n);

@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 18:07:36 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/11 17:49:50 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/18 21:17:23 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,25 @@
 # define NIL "0x0"
 #endif
 
-int	ft_putnbr_base_p(uintptr_t n, char *base, int fd)
+int	ft_putnbr_base_p(unsigned long long n, char *base, int fd)
 {
 	int	count;
+	int	cnt_tmp;
 
 	if (n == 0)
-		return (ft_putstr_fd(NIL, fd));
+	{
+		count = ft_putstr_fd(NIL, fd);
+		if (count < 0)
+			return (-1);
+		return (count);
+	}
 	count = 0;
 	count += ft_putstr_fd("0x", fd);
-	count += ft_putnbr_base(n, base, fd);
+	if (count < 0)
+		return (-1);
+	cnt_tmp = ft_putnbr_base(n, base, fd);
+	if (cnt_tmp < 0)
+		return (-1);
+	count += cnt_tmp;
 	return (count);
 }
