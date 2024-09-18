@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:21:01 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 19:50:11 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/19 00:23:39 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	print_sign(t_flags *flags, int fd)
 	return (count);
 }
 
-int	print_left_shift(int fd, t_flags *flags)
+int	print_left_shift_int(int fd, t_flags *flags)
 {
 	int	count;
 	int	cnt_tmp;
@@ -56,7 +56,7 @@ int	print_left_shift(int fd, t_flags *flags)
 	return (count);
 }
 
-int	print_right_shift(int fd, t_flags *flags)
+int	print_right_shift_int(int fd, t_flags *flags)
 {
 	int	count;
 	int	cnt_tmp;
@@ -116,11 +116,11 @@ int	print_int(int n, t_flags *flags, int fd)
 	output_nbr = (long)n;
 	set_int_print_conf(flags, &output_nbr);
 	if (flags->is_minus == 1 || flags->is_zero == 1)
-		cnt_tmp = print_left_shift(fd, flags);
+		cnt_tmp = print_left_shift_int(fd, flags);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
-	cnt_tmp = print_right_shift(fd, flags);
+	cnt_tmp = print_right_shift_int(fd, flags);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;

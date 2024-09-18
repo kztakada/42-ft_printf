@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 23:24:48 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/18 23:49:47 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	printer(int fd, t_flags *flags, va_list *args)
 		return ((unsigned long)ft_putnbr_unsigned(va_arg(*args, unsigned int),
 				fd));
 	if (flags->type == '%')
-		return (ft_putchar_fd('%', fd));
+		return (print_percent(flags, fd));
 	return (0);
 }
 
