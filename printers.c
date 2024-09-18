@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:07:50 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 20:08:46 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/18 23:24:41 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,31 @@ int	print_str(char *str, t_flags *flags, int fd)
 	if (space_count < 0)
 		return (-1);
 	return (count + space_count);
+}
+
+int	print_ptr(unsigned long long ptr, t_flags *flags, int fd)
+{
+	int	count;
+	int	cnt_tmp;
+
+	count = 0;
+	cnt_tmp = 0;
+	set_ptr_print_conf(flags, (unsigned long long)ptr);
+	if (flags->is_minus == 0)
+		cnt_tmp = print_loop(flags->min_width, fd, ' ');
+	if (cnt_tmp < 0)
+		return (-1);
+	count += cnt_tmp;
+	cnt_tmp = ft_putnbr_base_p((unsigned long long)ptr, HEX_LOWER, fd);
+	if (cnt_tmp < 0)
+		return (-1);
+	count += cnt_tmp;
+	if (flags->is_minus == 1)
+	{
+		cnt_tmp = print_loop(flags->min_width, fd, ' ');
+		if (cnt_tmp < 0)
+			return (-1);
+		count += cnt_tmp;
+	}
+	return (count);
 }
