@@ -6,13 +6,14 @@
 #    By: katakada <katakada@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:55:18 by katakada          #+#    #+#              #
-#    Updated: 2024/09/16 00:16:46 by katakada         ###   ########.fr        #
+#    Updated: 2024/09/18 19:47:51 by katakada         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c print_number.c print_pointer.c output_format.c printer_util.c printer_int.c util_validators.c util_parsers.c util_setter.c
+SRCS = $(wildcard *.c)
+SRCS := $(filter-out main.c, $(SRCS))
 LIBFT = ./libft/libft.a
 OBJS = $(SRCS:.c=.o)
 CC = cc

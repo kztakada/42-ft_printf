@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_validators.c                                  :+:      :+:    :+:   */
+/*   util_func_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/11 23:31:45 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 19:59:01 by katakada         ###   ########.fr       */
+/*   Created: 2024/09/18 19:55:42 by katakada          #+#    #+#             */
+/*   Updated: 2024/09/18 19:56:10 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	is_flag(int c)
+long	get_abs(long n)
 {
-	return (c == '0' || c == '-' || c == '#' || c == ' ' || c == '+');
-}
-
-int	is_width_digit(int c)
-{
-	return (ft_isdigit(c) || c == '*');
-}
-
-int	is_precision_dot(int c)
-{
-	return (c == '.');
-}
-
-int	is_number_type(int c)
-{
-	return (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X');
-}
-
-int	is_format_type(int c)
-{
-	return (c == 'c' || c == 's' || c == 'p' || c == '%' || is_number_type(c));
+	if (n < 0)
+		return ((n * -1));
+	return (n);
 }

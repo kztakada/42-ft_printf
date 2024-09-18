@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/16 00:17:40 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/18 19:56:39 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ void	parse_format(const char **format, t_flags *flags);
 
 void	set_char_print_conf(t_flags *flags);
 void	set_str_print_conf(t_flags *flags, char *str);
-void	set_nbr_print_conf(t_flags *flags, long *output_nbr);
+void	set_int_print_conf(t_flags *flags, long *output_nbr);
+
+long	get_abs(long n);
+
 #endif

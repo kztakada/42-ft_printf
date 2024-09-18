@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_int.c                                        :+:      :+:    :+:   */
+/*   printer_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 00:09:07 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/16 00:10:48 by katakada         ###   ########.fr       */
+/*   Created: 2024/09/18 19:21:01 by katakada          #+#    #+#             */
+/*   Updated: 2024/09/18 19:50:11 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	print_int(int n, t_flags *flags, int fd)
 	count = 0;
 	cnt_tmp = 0;
 	output_nbr = (long)n;
-	set_nbr_print_conf(flags, &output_nbr);
+	set_int_print_conf(flags, &output_nbr);
 	if (flags->is_minus == 1 || flags->is_zero == 1)
 		cnt_tmp = print_left_shift(fd, flags);
 	if (cnt_tmp < 0)

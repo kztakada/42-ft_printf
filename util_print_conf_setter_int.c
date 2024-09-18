@@ -1,53 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_setter.c                                      :+:      :+:    :+:   */
+/*   util_print_conf_setter_int.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 23:20:28 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/15 23:28:12 by katakada         ###   ########.fr       */
+/*   Created: 2024/09/18 19:52:00 by katakada          #+#    #+#             */
+/*   Updated: 2024/09/18 19:54:45 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-
-void	set_char_print_conf(t_flags *flags)
-{
-	if (flags->min_width <= flags->charactors && flags->precision != -1)
-	{
-		flags->min_width = 0;
-		return ;
-	}
-}
-
-void	set_str_print_conf(t_flags *flags, char *str)
-{
-	flags->charactors = ft_strlen(str);
-	if (flags->precision == -2)
-		flags->charactors = 0;
-	if (flags->charactors > flags->precision && flags->precision > 0)
-		flags->charactors = flags->precision;
-	if (flags->min_width <= flags->charactors && flags->precision != -1)
-	{
-		flags->min_width = 0;
-		if (flags->precision == -1)
-			flags->charactors = 0;
-		return ;
-	}
-	if (flags->precision != -1)
-		flags->min_width = flags->min_width - flags->charactors;
-	if (flags->precision == -1)
-		flags->charactors = 0;
-}
-
-long	get_abs(long n)
-{
-	if (n < 0)
-		return ((n * -1));
-	return (n);
-}
 
 void	resolve_sign(t_flags *flags, long *output_nbr)
 {
@@ -109,7 +72,7 @@ void	resolve_precision(t_flags *flags)
 		flags->precision = 0;
 }
 
-void	set_nbr_print_conf(t_flags *flags, long *output_nbr)
+void	set_int_print_conf(t_flags *flags, long *output_nbr)
 {
 	int	is_not_precision;
 	int	is_zero_precision;
