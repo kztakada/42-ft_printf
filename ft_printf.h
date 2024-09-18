@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 19:56:39 by katakada         ###   ########.fr       */
+/*   Updated: 2024/09/18 20:13:37 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ typedef struct s_flags
 }		t_flags;
 
 int		ft_printf(const char *format, ...);
-int		output_format(const char **format, t_flags *flags, va_list *args,
+int		print_format(const char **format, t_flags *flags, va_list *args,
 			int fd);
 
+int		print_char(int c, t_flags *flags, int fd);
+int		print_str(char *str, t_flags *flags, int fd);
 int		print_int(int n, t_flags *flags, int fd);
 int		print_loop(int loop_times, int fd, int c);
 

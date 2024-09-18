@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   output_format.c                                    :+:      :+:    :+:   */
+/*   print_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/11 20:07:58 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/16 00:17:51 by katakada         ###   ########.fr       */
+/*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
+/*   Updated: 2024/09/18 20:13:19 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,63 +16,6 @@
 #else
 # define ISLINUX 0
 #endif
-#include <stdio.h>
-
-int	print_char(int c, t_flags *flags, int fd)
-{
-	int	count;
-	int	space_count;
-
-	count = 0;
-	space_count = 0;
-	flags->charactors = 1;
-	set_char_print_conf(flags);
-	if (flags->is_minus == 0)
-	{
-		if (ISLINUX == 1)
-			space_count = print_loop(flags->min_width - 1, fd, ' ');
-		if (ISLINUX == 0)
-			space_count = print_loop(flags->min_width - 1, fd, '0');
-	}
-	if (space_count < 0)
-		return (-1);
-	if (ft_putchar_fd(c, fd) < 0)
-		return (-1);
-	count++;
-	if (flags->is_minus == 1)
-		space_count = print_loop(flags->min_width - 1, fd, ' ');
-	if (space_count < 0)
-		return (-1);
-	return (count + space_count);
-}
-
-int	print_str(char *str, t_flags *flags, int fd)
-{
-	int		count;
-	int		space_count;
-	char	*output_str;
-
-	space_count = 0;
-	if (!str)
-		str = "(null)";
-	set_str_print_conf(flags, str);
-	if (flags->is_minus == 0)
-		space_count = print_loop(flags->min_width, fd, ' ');
-	if (space_count < 0)
-		return (-1);
-	output_str = ft_substr(str, 0, flags->charactors);
-	if (!output_str)
-		return (-1);
-	count = ft_putstr_fd(output_str, fd);
-	free(output_str);
-	if (count < 0)
-		return (-1);
-	if (flags->is_minus == 1)
-		space_count = print_loop(flags->min_width, fd, ' ');
-	if (space_count < 0)
-		return (-1);
-	return (count + space_count);
-}
 
 int	printer(int fd, t_flags *flags, va_list *args)
 {
@@ -117,7 +60,7 @@ int	print_unformat(const char **format, int fd)
 	}
 }
 
-int	output_format(const char **format, t_flags *flags, va_list *args, int fd)
+int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 {
 	(*format)++;
 	if (!(is_format_type(**format) || is_flag(**format)
