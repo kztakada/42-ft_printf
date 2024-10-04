@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:07:50 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/19 00:17:53 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:32:42 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	print_char(int c, t_flags *flags, int fd)
 	if (flags->is_minus == 0)
 	{
 		if (ISLINUX == 1)
-			count = print_loop(flags->min_width - 1, fd, ' ');
+			count = print_space_loop(flags->min_width - 1, fd);
 		if (ISLINUX == 0)
-			count = print_loop(flags->min_width - 1, fd, '0');
+			count = print_zero_loop(flags->min_width - 1, fd);
 	}
 	if (count < 0)
 		return (-1);
@@ -39,7 +39,7 @@ int	print_char(int c, t_flags *flags, int fd)
 		return (-1);
 	count++;
 	if (flags->is_minus == 1)
-		cnt_tmp = print_loop(flags->min_width - 1, fd, ' ');
+		cnt_tmp = print_space_loop(flags->min_width - 1, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
@@ -52,9 +52,9 @@ int	print_left_shift_str(t_flags *flags, int fd)
 
 	count = 0;
 	if (flags->is_zero == 1)
-		count = print_loop(flags->min_width, fd, '0');
+		count = print_zero_loop(flags->min_width, fd);
 	else if (flags->is_minus == 0)
-		count = print_loop(flags->min_width, fd, ' ');
+		count = print_space_loop(flags->min_width, fd);
 	if (count < 0)
 		return (-1);
 	return (count);
@@ -82,7 +82,7 @@ int	print_str(char *str, t_flags *flags, int fd)
 	count += cnt_tmp;
 	cnt_tmp = 0;
 	if (flags->is_minus == 1)
-		cnt_tmp = print_loop(flags->min_width, fd, ' ');
+		cnt_tmp = print_space_loop(flags->min_width, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
@@ -98,7 +98,7 @@ int	print_ptr(unsigned long long ptr, t_flags *flags, int fd)
 	cnt_tmp = 0;
 	set_ptr_print_conf(flags, (unsigned long long)ptr);
 	if (flags->is_minus == 0)
-		cnt_tmp = print_loop(flags->min_width, fd, ' ');
+		cnt_tmp = print_space_loop(flags->min_width, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
@@ -108,7 +108,7 @@ int	print_ptr(unsigned long long ptr, t_flags *flags, int fd)
 	count += cnt_tmp;
 	if (flags->is_minus == 1)
 	{
-		cnt_tmp = print_loop(flags->min_width, fd, ' ');
+		cnt_tmp = print_space_loop(flags->min_width, fd);
 		if (cnt_tmp < 0)
 			return (-1);
 		count += cnt_tmp;
@@ -126,16 +126,16 @@ int	print_percent(t_flags *flags, int fd)
 	flags->charactors = 1;
 	set_char_print_conf(flags);
 	if (flags->is_zero == 1)
-		count = print_loop(flags->min_width - 1, fd, '0');
+		count = print_zero_loop(flags->min_width - 1, fd);
 	else if (flags->is_minus == 0)
-		count = print_loop(flags->min_width - 1, fd, ' ');
+		count = print_space_loop(flags->min_width - 1, fd);
 	if (count < 0)
 		return (-1);
 	if (ft_putchar_fd('%', fd) < 0)
 		return (-1);
 	count++;
 	if (flags->is_minus == 1)
-		cnt_tmp = print_loop(flags->min_width - 1, fd, ' ');
+		cnt_tmp = print_space_loop(flags->min_width - 1, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;

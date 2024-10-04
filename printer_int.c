@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:21:01 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/19 00:23:39 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:36:42 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	print_left_shift_int(int fd, t_flags *flags)
 	count = cnt_tmp;
 	if (flags->is_minus == 1)
 	{
-		cnt_tmp = print_loop(flags->precision, fd, '0');
+		cnt_tmp = print_zero_loop(flags->precision, fd);
 		if (cnt_tmp < 0)
 			return (-1);
 		count += cnt_tmp;
@@ -48,9 +48,8 @@ int	print_left_shift_int(int fd, t_flags *flags)
 	if (flags->is_zero == 1)
 	{
 		if (flags->precision != -1)
-			cnt_tmp = print_loop(flags->min_width, fd, '0');
-		if (cnt_tmp < 0)
-			return (-1);
+			cnt_tmp = print_zero_loop(flags->min_width,
+					fd) if (cnt_tmp < 0) return (-1);
 		count += cnt_tmp;
 	}
 	return (count);
@@ -67,7 +66,7 @@ int	print_right_shift_int(int fd, t_flags *flags)
 	{
 		if (flags->is_zero != 1)
 		{
-			cnt_tmp = print_loop(flags->min_width, fd, ' ');
+			cnt_tmp = print_space_loop(flags->min_width, fd);
 			if (cnt_tmp < 0)
 				return (-1);
 			count += cnt_tmp;
@@ -76,7 +75,7 @@ int	print_right_shift_int(int fd, t_flags *flags)
 				return (-1);
 			count += cnt_tmp;
 		}
-		cnt_tmp = print_loop(flags->precision, fd, '0');
+		cnt_tmp = print_zero_loop(flags->precision, fd);
 		if (cnt_tmp < 0)
 			return (-1);
 		count += cnt_tmp;
@@ -97,7 +96,7 @@ int	print_nbr(int fd, t_flags *flags, long output_nbr)
 	count = cnt_tmp;
 	if (flags->is_minus == 1)
 	{
-		cnt_tmp = print_loop(flags->min_width, fd, ' ');
+		cnt_tmp = print_space_loop(flags->min_width, fd);
 		if (cnt_tmp < 0)
 			return (-1);
 		count += cnt_tmp;

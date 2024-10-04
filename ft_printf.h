@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 23:49:05 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:24:33 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int		print_str(char *str, t_flags *flags, int fd);
 int		print_int(int n, t_flags *flags, int fd);
 int		print_ptr(unsigned long long ptr, t_flags *flags, int fd);
 int		print_percent(t_flags *flags, int fd);
-int		print_loop(int loop_times, int fd, int c);
+int		print_zero_loop(int loop_times, int fd);
+int		print_space_loop(int loop_times, int fd);
 
 int		ft_putnbr_base(unsigned long n, char *base, int fd);
 int		ft_putnbr_base_p(unsigned long long n, char *base, int fd);
