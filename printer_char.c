@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 00:02:38 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 00:13:52 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 00:44:05 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	print_char(int c, t_flags *flags, int fd)
 	int	cnt_tmp;
 
 	count = 0;
+	flags->charactors = 1;
 	set_char_print_conf(flags);
 	cnt_tmp = print_prefix_char(flags, fd);
 	if (cnt_tmp < 0)
