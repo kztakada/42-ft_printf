@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 23:49:47 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/04 19:34:43 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	printer(int fd, t_flags *flags, va_list *args)
 	if (flags->type == 'd' || flags->type == 'i')
 		return (print_int(va_arg(*args, int), flags, fd));
 	if (flags->type == 'x')
-		return (ft_putnbr_base((unsigned long)va_arg(*args, unsigned int),
-				HEX_LOWER, fd));
+		return (print_hex_base(va_arg(*args, unsigned int), flags, HEX_LOWER,
+				fd));
 	if (flags->type == 'X')
-		return (ft_putnbr_base((unsigned long)va_arg(*args, unsigned int),
-				HEX_UPPER, fd));
+		return (print_hex_base(va_arg(*args, unsigned int), flags, HEX_UPPER,
+				fd));
 	if (flags->type == 'p')
 		return (print_ptr((unsigned long long)va_arg(*args, void *), flags,
 				fd));
