@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:21:01 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/04 16:36:42 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/04 17:32:16 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ int	print_left_shift_int(int fd, t_flags *flags)
 	if (flags->is_zero == 1)
 	{
 		if (flags->precision != -1)
-			cnt_tmp = print_zero_loop(flags->min_width,
-					fd) if (cnt_tmp < 0) return (-1);
+			cnt_tmp = print_zero_loop(flags->min_width, fd);
+		if (cnt_tmp < 0)
+			return (-1);
 		count += cnt_tmp;
 	}
 	return (count);
