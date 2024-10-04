@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:07:50 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/04 16:32:42 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 00:03:17 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,6 @@
 #else
 # define ISLINUX 0
 #endif
-
-int	print_char(int c, t_flags *flags, int fd)
-{
-	int	count;
-	int	cnt_tmp;
-
-	count = 0;
-	cnt_tmp = 0;
-	flags->charactors = 1;
-	set_char_print_conf(flags);
-	if (flags->is_minus == 0)
-	{
-		if (ISLINUX == 1)
-			count = print_space_loop(flags->min_width - 1, fd);
-		if (ISLINUX == 0)
-			count = print_zero_loop(flags->min_width - 1, fd);
-	}
-	if (count < 0)
-		return (-1);
-	if (ft_putchar_fd(c, fd) < 0)
-		return (-1);
-	count++;
-	if (flags->is_minus == 1)
-		cnt_tmp = print_space_loop(flags->min_width - 1, fd);
-	if (cnt_tmp < 0)
-		return (-1);
-	count += cnt_tmp;
-	return (count);
-}
 
 int	print_left_shift_str(t_flags *flags, int fd)
 {
