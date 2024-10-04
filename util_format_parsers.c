@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:49:36 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 19:47:22 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 01:00:37 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parse_flags(const char **format, t_flags *flags)
 		if (**format == '0')
 			flags->is_zero = 1;
 		if (**format == '#')
-			flags->is_sharp = 1;
+			flags->is_sharp = 2;
 		if (**format == ' ')
 			flags->is_space = 1;
 		if (**format == '+')

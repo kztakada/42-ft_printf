@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 19:32:57 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/04 23:48:45 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 01:01:19 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	print_sharp_hex(t_flags *flags, int fd)
 
 	count = 0;
 	cnt_tmp = 0;
-	if (flags->is_sharp == 1)
+	if (flags->is_sharp)
 	{
 		cnt_tmp = ft_putstr_fd("0x", fd);
 		if (cnt_tmp < 0)
