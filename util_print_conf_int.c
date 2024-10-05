@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_print_conf_setter_int.c                       :+:      :+:    :+:   */
+/*   util_print_conf_int.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 19:52:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 13:46:13 by katakada         ###   ########.fr       */
+/*   Created: 2024/10/05 17:52:16 by katakada          #+#    #+#             */
+/*   Updated: 2024/10/05 20:20:03 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	set_blank_size_int(t_flags *flags, long output_nbr)
 		flags->blank_size = 0;
 }
 
-void	resolve_precision(t_flags *flags)
+void	set_precision_int(t_flags *flags)
 {
 	int	is_not_precision;
 
@@ -87,5 +87,5 @@ void	set_int_print_conf(t_flags *flags, long *output_nbr)
 	if (*output_nbr == 0 && is_zero_precision)
 		flags->charactors = 0;
 	set_blank_size_int(flags, *output_nbr);
-	resolve_precision(flags);
+	set_precision_int(flags);
 }

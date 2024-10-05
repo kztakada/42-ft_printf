@@ -6,13 +6,13 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 23:31:45 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 16:38:37 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 18:06:24 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	is_flag(int c)
+int	is_format_flag(int c)
 {
 	return (c == '0' || c == '-' || c == '#' || c == ' ' || c == '+');
 }

@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 16:39:00 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 18:58:58 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,37 @@
 # define ISLINUX 0
 #endif
 
-int	printer(int fd, t_flags *flags, va_list *args)
+int	print_unformat(const char **format, int fd)
+{
+	if (ISLINUX == 1)
+	{
+		if (ft_putchar_fd(*--(*format), fd) < 0)
+			return (-1);
+		if (ft_putchar_fd(*++(*format), fd) < 0)
+			return (-1);
+		return (2);
+	}
+	else
+	{
+		if (ft_putchar_fd(**format, fd) < 0)
+			return (-1);
+		return (1);
+	}
+}
+
+void	prepare_format_flags(const char **format, t_flags *flags, va_list *args)
+{
+	if (is_format_flag(**format))
+		set_format_flags(format, flags);
+	if (is_field_digit(**format))
+		set_format_field_size(format, flags, args);
+	if (is_precision_dot(**format))
+		set_format_precision(format, flags, args);
+	if (is_format_type(**format))
+		set_format_type(format, flags);
+}
+
+int	print_by_format_type(int fd, t_flags *flags, va_list *args)
 {
 	if (flags->type == 'c')
 		return (print_char(va_arg(*args, int), flags, fd));
@@ -42,37 +72,15 @@ int	printer(int fd, t_flags *flags, va_list *args)
 	return (0);
 }
 
-int	print_unformat(const char **format, int fd)
-{
-	if (ISLINUX == 1)
-	{
-		if (ft_putchar_fd(*--(*format), fd) < 0)
-			return (-1);
-		if (ft_putchar_fd(*++(*format), fd) < 0)
-			return (-1);
-		return (2);
-	}
-	else
-	{
-		if (ft_putchar_fd(**format, fd) < 0)
-			return (-1);
-		return (1);
-	}
-}
-
 int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 {
+	int	is_not_format;
+
 	(*format)++;
-	if (!(is_format_type(**format) || is_flag(**format)
-			|| is_field_digit(**format) || is_precision_dot(**format)))
+	is_not_format = (!(is_format_type(**format) || is_format_flag(**format)
+				|| is_field_digit(**format) || is_precision_dot(**format)));
+	if (is_not_format)
 		return (print_unformat(format, fd));
-	if (is_flag(**format))
-		parse_flags(format, flags);
-	if (is_field_digit(**format))
-		set_field_size(format, flags, args);
-	if (is_precision_dot(**format))
-		parse_precision(format, flags, args);
-	if (is_format_type(**format))
-		parse_format(format, flags);
-	return (printer(fd, flags, args));
+	prepare_format_flags(format, flags, args);
+	return (print_by_format_type(fd, flags, args));
 }

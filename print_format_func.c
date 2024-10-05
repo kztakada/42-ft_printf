@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_format_parsers.c                              :+:      :+:    :+:   */
+/*   print_format_func.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 18:49:36 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 16:39:08 by katakada         ###   ########.fr       */
+/*   Created: 2024/10/05 20:13:27 by katakada          #+#    #+#             */
+/*   Updated: 2024/10/05 20:13:28 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	parse_flags(const char **format, t_flags *flags)
+void	set_format_flags(const char **format, t_flags *flags)
 {
-	while (is_flag(**format))
+	while (is_format_flag(**format))
 	{
 		if (**format == '-')
 			flags->is_minus = 1;
@@ -34,7 +34,8 @@ void	parse_flags(const char **format, t_flags *flags)
 		flags->is_space = 0;
 }
 
-void	set_field_size(const char **format, t_flags *flags, va_list *args)
+void	set_format_field_size(const char **format, t_flags *flags,
+		va_list *args)
 {
 	if (**format == '*')
 	{
@@ -49,7 +50,7 @@ void	set_field_size(const char **format, t_flags *flags, va_list *args)
 	}
 }
 
-void	parse_precision(const char **format, t_flags *flags, va_list *args)
+void	set_format_precision(const char **format, t_flags *flags, va_list *args)
 {
 	(*format)++;
 	if (!((**format == '*') || ft_isdigit(**format)))
@@ -72,7 +73,7 @@ void	parse_precision(const char **format, t_flags *flags, va_list *args)
 		flags->is_zero = 0;
 }
 
-void	parse_format(const char **format, t_flags *flags)
+void	set_format_type(const char **format, t_flags *flags)
 {
 	if (**format)
 		flags->type = **format;
