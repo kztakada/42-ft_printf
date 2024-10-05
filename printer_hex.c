@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:56:41 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/04 19:35:43 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:10:42 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	print_suffix_hex(t_flags *flags, int fd)
 	return (count);
 }
 
-int	print_hex(unsigned int output_hex, t_flags *flags, char *base, int fd)
+int	print_core_hex(unsigned int output_hex, t_flags *flags, char *base, int fd)
 {
 	int	count;
 	int	cnt_tmp;
@@ -56,7 +56,7 @@ int	print_hex_base(unsigned int output_hex, t_flags *flags, char *base, int fd)
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
-	cnt_tmp = print_hex(output_hex, flags, base, fd);
+	cnt_tmp = print_core_hex(output_hex, flags, base, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;

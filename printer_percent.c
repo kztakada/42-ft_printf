@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 00:40:44 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 00:49:12 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:22:33 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ int	print_sufix_percent(t_flags *flags, int fd)
 	return (count);
 }
 
+int	print_core_percent(int fd)
+{
+	int	count;
+
+	count = 0;
+	if (ft_putchar_fd('%', fd) < 0)
+		return (-1);
+	count++;
+	return (count);
+}
+
 int	print_percent(t_flags *flags, int fd)
 {
 	int	count;
@@ -50,9 +61,10 @@ int	print_percent(t_flags *flags, int fd)
 	count = print_prefix_percent(flags, fd);
 	if (count < 0)
 		return (-1);
-	if (ft_putchar_fd('%', fd) < 0)
+	cnt_tmp = print_core_percent(fd);
+	if (cnt_tmp < 0)
 		return (-1);
-	count++;
+	count += cnt_tmp;
 	cnt_tmp = print_sufix_percent(flags, fd);
 	if (cnt_tmp < 0)
 		return (-1);

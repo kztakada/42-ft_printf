@@ -6,13 +6,13 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:21:01 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/04 20:38:21 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:11:08 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_nbr(int fd, t_flags *flags, long output_nbr)
+int	print_core_int(int fd, t_flags *flags, long output_nbr)
 {
 	int	count;
 	int	cnt_tmp;
@@ -55,7 +55,7 @@ int	print_int(int n, t_flags *flags, int fd)
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
-	cnt_tmp = print_nbr(fd, flags, output_nbr);
+	cnt_tmp = print_core_int(fd, flags, output_nbr);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;

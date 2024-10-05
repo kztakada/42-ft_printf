@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 00:18:16 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 00:30:26 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:15:00 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	print_suffix_str(t_flags *flags, int fd)
 	return (count);
 }
 
-int	print_s(char *str, t_flags *flags, int fd)
+int	print_core_str(char *str, t_flags *flags, int fd)
 {
 	int		count;
 	char	*output_str;
@@ -67,7 +67,7 @@ int	print_str(char *str, t_flags *flags, int fd)
 	count = print_prefix_str(flags, fd);
 	if (count < 0)
 		return (-1);
-	cnt_tmp = print_s(str, flags, fd);
+	cnt_tmp = print_core_str(str, flags, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;

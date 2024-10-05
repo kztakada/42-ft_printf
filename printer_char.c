@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 00:02:38 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 00:44:05 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:10:13 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	print_suffix_char(t_flags *flags, int fd)
 	return (count);
 }
 
-int	print_c(int c, int fd)
+int	print_core_char(int c, int fd)
 {
 	if (ft_putchar_fd(c, fd) < 0)
 		return (-1);
@@ -67,7 +67,7 @@ int	print_char(int c, t_flags *flags, int fd)
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
-	cnt_tmp = print_c(c, fd);
+	cnt_tmp = print_core_char(c, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
