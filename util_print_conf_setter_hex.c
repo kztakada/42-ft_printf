@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 19:02:14 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 13:35:49 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:46:47 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	set_hexlen_base(unsigned int output_hex, char *base, t_flags *flags)
 		flags->charactors++;
 }
 
-void	set_min_width(t_flags *flags)
+void	set_blank_size_hex(t_flags *flags)
 {
 	int	precision;
 
@@ -64,7 +64,7 @@ void	set_hex_print_conf(t_flags *flags, unsigned int *output_hex, char *base)
 		flags->is_sharp = 0;
 	set_hexlen_base(*output_hex, base, flags);
 	if (!(output_hex == 0 && is_zero_precision))
-		set_min_width(flags);
+		set_blank_size_hex(flags);
 	if (!(is_not_precision))
 		set_precision(flags);
 }

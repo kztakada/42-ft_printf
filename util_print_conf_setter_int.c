@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:52:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 13:39:03 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:46:13 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	set_nbr_digits(t_flags *flags, long output_nbr, char *base)
 		flags->charactors++;
 }
 
-void	set_blank_size(t_flags *flags, long output_nbr)
+void	set_blank_size_int(t_flags *flags, long output_nbr)
 {
 	int	precision;
 	int	is_not_precision;
@@ -86,6 +86,6 @@ void	set_int_print_conf(t_flags *flags, long *output_nbr)
 		set_nbr_digits(flags, *output_nbr, DEC);
 	if (*output_nbr == 0 && is_zero_precision)
 		flags->charactors = 0;
-	set_blank_size(flags, *output_nbr);
+	set_blank_size_int(flags, *output_nbr);
 	resolve_precision(flags);
 }
