@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:49:36 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 01:00:37 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:35:49 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	parse_width(const char **format, t_flags *flags, va_list *args)
 {
 	if (**format == '*')
 	{
-		flags->min_width = va_arg(*args, int);
+		flags->blank_size = va_arg(*args, int);
 		(*format)++;
 	}
 	else
 	{
-		flags->min_width = ft_atoi(&**format);
+		flags->blank_size = ft_atoi(&**format);
 		while (ft_isdigit(**format))
 			(*format)++;
 	}

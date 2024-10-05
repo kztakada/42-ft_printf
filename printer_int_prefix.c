@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 20:37:06 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/04 23:52:48 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:35:49 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	print_blank_space_int(t_flags *flags, int fd)
 	cnt_tmp = 0;
 	if (flags->is_minus == 0 && flags->is_zero != 1)
 	{
-		cnt_tmp = print_space_loop(flags->min_width, fd);
+		cnt_tmp = print_space_loop(flags->blank_size, fd);
 		if (cnt_tmp < 0)
 			return (-1);
 		count += cnt_tmp;
@@ -55,7 +55,7 @@ int	print_flag_zero_int(t_flags *flags, int fd)
 	if (flags->is_zero == 1)
 	{
 		if (flags->precision != -1)
-			cnt_tmp = print_zero_loop(flags->min_width, fd);
+			cnt_tmp = print_zero_loop(flags->blank_size, fd);
 		if (cnt_tmp < 0)
 			return (-1);
 		count += cnt_tmp;

@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 00:02:38 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 13:21:26 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:35:49 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	print_prefix_char(t_flags *flags, int fd)
 		if (flags->is_zero)
 		{
 			if (ISLINUX == 1)
-				count = print_space_loop(flags->min_width - 1, fd);
+				count = print_space_loop(flags->blank_size - 1, fd);
 			if (ISLINUX == 0)
-				count = print_zero_loop(flags->min_width - 1, fd);
+				count = print_zero_loop(flags->blank_size - 1, fd);
 		}
 		else
-			count = print_space_loop(flags->min_width - 1, fd);
+			count = print_space_loop(flags->blank_size - 1, fd);
 	}
 	if (count < 0)
 		return (-1);
@@ -46,7 +46,7 @@ int	print_suffix_char(t_flags *flags, int fd)
 	count = 0;
 	if (flags->is_minus == 1)
 	{
-		count = print_space_loop(flags->min_width - 1, fd);
+		count = print_space_loop(flags->blank_size - 1, fd);
 		if (count < 0)
 			return (-1);
 	}

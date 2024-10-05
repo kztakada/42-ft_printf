@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/04 20:39:30 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:36:11 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_flags
 	int	is_sharp;
 	int	is_space;
 	int	is_plus;
-	int	min_width;
+	int	blank_size;
 	int	precision;
 	int	charactors;
 	int	sign;

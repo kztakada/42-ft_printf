@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 19:02:14 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 12:39:38 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:35:49 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ void	set_min_width(t_flags *flags)
 	else
 		precision = 0;
 	if (precision <= flags->charactors)
-		flags->min_width = flags->min_width - flags->charactors
+		flags->blank_size = flags->blank_size - flags->charactors
 			- flags->is_sharp;
 	else
-		flags->min_width = flags->min_width - precision - flags->is_sharp;
-	if (flags->min_width <= 0)
-		flags->min_width = 0;
+		flags->blank_size = flags->blank_size - precision - flags->is_sharp;
+	if (flags->blank_size <= 0)
+		flags->blank_size = 0;
 }
 
 void	set_precision(t_flags *flags)

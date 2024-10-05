@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:52:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 19:54:45 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:39:03 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	set_nbr_digits(t_flags *flags, long output_nbr, char *base)
 		flags->charactors++;
 }
 
-void	resolve_min_width(t_flags *flags, long output_nbr)
+void	set_blank_size(t_flags *flags, long output_nbr)
 {
 	int	precision;
 	int	is_not_precision;
@@ -50,13 +50,13 @@ void	resolve_min_width(t_flags *flags, long output_nbr)
 	else
 		precision = 0;
 	if (precision <= flags->charactors)
-		flags->min_width = flags->min_width - flags->charactors
+		flags->blank_size = flags->blank_size - flags->charactors
 			- get_abs(flags->sign) - flags->is_sharp;
 	else
-		flags->min_width = flags->min_width - precision - get_abs(flags->sign)
+		flags->blank_size = flags->blank_size - precision - get_abs(flags->sign)
 			- flags->is_sharp;
-	if (flags->min_width <= 0)
-		flags->min_width = 0;
+	if (flags->blank_size <= 0)
+		flags->blank_size = 0;
 }
 
 void	resolve_precision(t_flags *flags)
@@ -86,6 +86,6 @@ void	set_int_print_conf(t_flags *flags, long *output_nbr)
 		set_nbr_digits(flags, *output_nbr, DEC);
 	if (*output_nbr == 0 && is_zero_precision)
 		flags->charactors = 0;
-	resolve_min_width(flags, *output_nbr);
+	set_blank_size(flags, *output_nbr);
 	resolve_precision(flags);
 }

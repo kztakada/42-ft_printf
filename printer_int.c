@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:21:01 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 12:11:08 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:35:49 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	print_suffix_int(t_flags *flags, int fd)
 	count = 0;
 	if (flags->is_minus == 1)
 	{
-		cnt_tmp = print_space_loop(flags->min_width, fd);
+		cnt_tmp = print_space_loop(flags->blank_size, fd);
 		if (cnt_tmp < 0)
 			return (-1);
 		count += cnt_tmp;
