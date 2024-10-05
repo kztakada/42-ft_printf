@@ -1,52 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printer_int_prefix.c                               :+:      :+:    :+:   */
+/*   printer_u_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 20:37:06 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 20:36:38 by katakada         ###   ########.fr       */
+/*   Created: 2024/10/05 22:05:07 by katakada          #+#    #+#             */
+/*   Updated: 2024/10/05 22:54:42 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_sign_int(t_flags *flags, int fd)
-{
-	int	count;
-
-	count = 0;
-	if (flags->sign == -1)
-		count = ft_putchar_fd('-', fd);
-	else if (flags->is_plus == 1)
-		count = ft_putchar_fd('+', fd);
-	else if (flags->is_space == 1)
-		count = ft_putchar_fd(' ', fd);
-	if (count < 0)
-		return (-1);
-	return (count);
-}
-
-int	print_flag_zero_int(t_flags *flags, int fd)
-{
-	int	count;
-
-	count = 0;
-	if (flags->is_zero == 1)
-	{
-		count = print_zero_loop(flags->blank_size, fd);
-		if (count < 0)
-			return (-1);
-		return (count);
-	}
-	count = print_zero_loop(flags->precision, fd);
-	if (count < 0)
-		return (-1);
-	return (count);
-}
-
-int	print_prefix_int(t_flags *flags, int fd)
+int	print_prefix_u_int(t_flags *flags, int fd)
 {
 	int	count;
 	int	cnt_tmp;
@@ -56,11 +22,29 @@ int	print_prefix_int(t_flags *flags, int fd)
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
-	cnt_tmp = print_sign_int(flags, fd);
+	cnt_tmp = print_flag_zero_int(flags, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
-	cnt_tmp = print_flag_zero_int(flags, fd);
+	return (count);
+}
+
+int	print_u_int(unsigned int u_number, t_flags *flags, int fd)
+{
+	int	count;
+	int	cnt_tmp;
+
+	count = 0;
+	set_u_int_print_conf(flags, u_number);
+	cnt_tmp = print_prefix_u_int(flags, fd);
+	if (cnt_tmp < 0)
+		return (-1);
+	count += cnt_tmp;
+	cnt_tmp = print_core_int(fd, flags, u_number);
+	if (cnt_tmp < 0)
+		return (-1);
+	count += cnt_tmp;
+	cnt_tmp = print_suffix_nbr_str(flags, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;

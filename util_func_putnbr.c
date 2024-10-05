@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:17:10 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 18:35:22 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 23:33:39 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,5 @@ int	ft_putnbr_hex_base(unsigned long n, char *base, int fd)
 			return (-1);
 		count += cnt_tmp;
 	}
-	return (count);
-}
-
-int	ft_putnbr_unsigned(unsigned long n, int fd)
-{
-	int	count;
-
-	count = 0;
-	if (n >= 10)
-	{
-		count += ft_putnbr_fd((n / 10), fd);
-		count += ft_putchar_fd((n % 10 + '0'), fd);
-	}
-	else
-		count += ft_putchar_fd((n + '0'), fd);
 	return (count);
 }

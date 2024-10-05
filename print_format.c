@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 18:58:58 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 22:07:14 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ int	print_by_format_type(int fd, t_flags *flags, va_list *args)
 		return (print_ptr((unsigned long long)va_arg(*args, void *), flags,
 				fd));
 	if (flags->type == 'u')
-		return ((unsigned long)ft_putnbr_unsigned(va_arg(*args, unsigned int),
-				fd));
+		return (print_u_int(va_arg(*args, unsigned int), flags, fd));
 	if (flags->type == '%')
 		return (print_percent(flags, fd));
 	return (0);
