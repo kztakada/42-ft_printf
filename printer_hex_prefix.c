@@ -6,13 +6,13 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 19:32:57 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 13:35:49 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:45:26 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_blank_space_hex(t_flags *flags, int fd)
+int	print_blank_hex(t_flags *flags, int fd)
 {
 	int	count;
 	int	cnt_tmp;
@@ -46,7 +46,7 @@ int	print_sharp_hex(t_flags *flags, int fd)
 	return (count);
 }
 
-int	print_flag_zero(t_flags *flags, int fd)
+int	print_flag_zero_hex(t_flags *flags, int fd)
 {
 	int	count;
 	int	cnt_tmp;
@@ -75,7 +75,7 @@ int	print_prefix_hex(t_flags *flags, int fd)
 	int	cnt_tmp;
 
 	count = 0;
-	cnt_tmp = print_blank_space_hex(flags, fd);
+	cnt_tmp = print_blank_hex(flags, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
@@ -83,7 +83,7 @@ int	print_prefix_hex(t_flags *flags, int fd)
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
-	cnt_tmp = print_flag_zero(flags, fd);
+	cnt_tmp = print_flag_zero_hex(flags, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
