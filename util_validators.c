@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 23:31:45 by katakada          #+#    #+#             */
-/*   Updated: 2024/09/18 19:59:01 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:38:37 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_flag(int c)
 	return (c == '0' || c == '-' || c == '#' || c == ' ' || c == '+');
 }
 
-int	is_width_digit(int c)
+int	is_field_digit(int c)
 {
 	return (ft_isdigit(c) || c == '*');
 }

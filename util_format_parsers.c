@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:49:36 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 13:35:49 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:39:08 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_flags(const char **format, t_flags *flags)
 		flags->is_space = 0;
 }
 
-void	parse_width(const char **format, t_flags *flags, va_list *args)
+void	set_field_size(const char **format, t_flags *flags, va_list *args)
 {
 	if (**format == '*')
 	{

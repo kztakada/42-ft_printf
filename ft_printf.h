@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 13:36:11 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:39:22 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int		ft_putnbr_base_p(unsigned long long n, char *base, int fd);
 int		ft_putnbr_unsigned(unsigned long n, int fd);
 
 int		is_flag(int c);
-int		is_width_digit(int c);
+int		is_field_digit(int c);
 int		is_precision_dot(int c);
 int		is_number_type(int c);
 int		is_format_type(int c);
 
 void	parse_flags(const char **format, t_flags *flags);
-void	parse_width(const char **format, t_flags *flags, va_list *args);
+void	set_field_size(const char **format, t_flags *flags, va_list *args);
 void	parse_precision(const char **format, t_flags *flags, va_list *args);
 void	parse_format(const char **format, t_flags *flags);
 

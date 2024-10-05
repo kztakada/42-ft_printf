@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/04 19:34:43 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:39:00 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 {
 	(*format)++;
 	if (!(is_format_type(**format) || is_flag(**format)
-			|| is_width_digit(**format) || is_precision_dot(**format)))
+			|| is_field_digit(**format) || is_precision_dot(**format)))
 		return (print_unformat(format, fd));
 	if (is_flag(**format))
 		parse_flags(format, flags);
-	if (is_width_digit(**format))
-		parse_width(format, flags, args);
+	if (is_field_digit(**format))
+		set_field_size(format, flags, args);
 	if (is_precision_dot(**format))
 		parse_precision(format, flags, args);
 	if (is_format_type(**format))
