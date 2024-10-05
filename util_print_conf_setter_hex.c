@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 19:02:14 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/04 20:28:28 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:39:38 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void	set_hex_print_conf(t_flags *flags, unsigned int *output_hex, char *base)
 	is_zero_precision = flags->precision == -2;
 	if (*output_hex == 0 && is_not_precision)
 		flags->is_zero = 0;
+	if (*output_hex == 0)
+		flags->is_sharp = 0;
 	set_hexlen_base(*output_hex, base, flags);
 	if (!(output_hex == 0 && is_zero_precision))
 		set_min_width(flags);
 	if (!(is_not_precision))
 		set_precision(flags);
-	if (*output_hex == 0)
-		flags->is_sharp = 0;
 }
