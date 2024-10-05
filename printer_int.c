@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:21:01 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 20:04:29 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 20:53:00 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,6 @@ int	print_core_int(int fd, t_flags *flags, long output_nbr)
 		count = ft_putnbr_fd(output_nbr, fd);
 	if (count < 0)
 		return (-1);
-	return (count);
-}
-
-int	print_suffix_int(t_flags *flags, int fd)
-{
-	int	count;
-
-	count = 0;
-	if (flags->is_minus == 1)
-	{
-		count = print_space_loop(flags->blank_size, fd);
-		if (count < 0)
-			return (-1);
-	}
 	return (count);
 }
 
@@ -55,7 +41,7 @@ int	print_int(int n, t_flags *flags, int fd)
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
-	cnt_tmp = print_suffix_int(flags, fd);
+	cnt_tmp = print_suffix_nbr_str(flags, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;

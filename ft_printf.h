@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 20:08:54 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 20:51:35 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,14 @@ int		print_prefix_int(t_flags *flags, int fd);
 int		print_hex_base(unsigned int hex, t_flags *flags, char *base, int fd);
 int		print_prefix_hex(t_flags *flags, int fd);
 int		print_ptr(unsigned long long ptr, t_flags *flags, int fd);
-int		print_prefix_ptr(unsigned long long ptr, t_flags *flags, int fd);
 int		print_percent(t_flags *flags, int fd);
+
 int		print_zero_loop(int loop_times, int fd);
 int		print_space_loop(int loop_times, int fd);
+
+int		print_blank_space_nbr(t_flags *flags, int fd);
+int		print_flag_zero_hex(t_flags *flags, int fd);
+int		print_suffix_nbr_str(t_flags *flags, int fd);
 
 int		ft_putnbr_hex_base(unsigned long n, char *base, int fd);
 int		ft_putnbr_ptr_base(unsigned long long n, char *base, int fd);

@@ -6,25 +6,11 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 20:37:06 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 20:00:15 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/05 20:36:38 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	print_blank_space_int(t_flags *flags, int fd)
-{
-	int	count;
-
-	count = 0;
-	if (flags->is_minus == 0 && flags->is_zero == 0)
-	{
-		count = print_space_loop(flags->blank_size, fd);
-		if (count < 0)
-			return (-1);
-	}
-	return (count);
-}
 
 int	print_sign_int(t_flags *flags, int fd)
 {
@@ -66,7 +52,7 @@ int	print_prefix_int(t_flags *flags, int fd)
 	int	cnt_tmp;
 
 	count = 0;
-	cnt_tmp = print_blank_space_int(flags, fd);
+	cnt_tmp = print_blank_space_nbr(flags, fd);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;
