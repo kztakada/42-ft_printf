@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:52:16 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 23:24:09 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/06 18:18:36 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	resolve_sign(t_flags *flags, long *output_nbr)
 {
 	flags->sign = 0;
+	if (*output_nbr < 0)
+		flags->is_plus = 0;
 	if (*output_nbr < 0)
 		flags->sign = -1;
 	if (flags->sign == 1 || flags->is_plus == 1)
