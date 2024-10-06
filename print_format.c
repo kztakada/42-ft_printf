@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/06 15:12:38 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/06 17:12:00 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,25 @@ int	print_unformat(const char **format, int fd)
 
 void	prepare_format_flags(const char **format, t_flags *flags, va_list *args)
 {
-	if (is_format_flag(**format))
-		set_format_flags(format, flags);
-	if (is_field_digit(**format))
+	int	is_search_end;
+
+	is_search_end = 0;
+	if (is_field_digit(**format) && **format != '0')
 		set_format_field_size(format, flags, args);
-	if (is_precision_dot(**format))
-		set_format_precision(format, flags, args);
-	if (is_format_type(**format))
-		set_format_type(format, flags);
+	while (**format && !is_search_end)
+	{
+		if (is_format_flag(**format))
+			set_format_flags(format, flags);
+		if (is_field_digit(**format))
+			set_format_field_size(format, flags, args);
+		if (is_precision_dot(**format))
+			set_format_precision(format, flags, args);
+		if (is_format_type(**format))
+		{
+			set_format_type(format, flags);
+			is_search_end = 1;
+		}
+	}
 }
 
 int	print_by_format_type(int fd, t_flags *flags, va_list *args)

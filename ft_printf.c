@@ -6,13 +6,12 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:34 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/04 14:17:50 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:21:20 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// ft_vdprintf requires format not to be null
 int	ft_vdprintf(int fd, const char *format, va_list *args)
 {
 	int		count;
