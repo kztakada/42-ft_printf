@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:56:41 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 20:52:54 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/06 11:54:50 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	print_hex_base(unsigned int output_hex, t_flags *flags, char *base, int fd)
 
 	count = 0;
 	set_hex_print_conf(flags, output_hex, base);
-	cnt_tmp = print_prefix_hex(flags, fd);
+	cnt_tmp = print_prefix_hex(flags, fd, base);
 	if (cnt_tmp < 0)
 		return (-1);
 	count += cnt_tmp;

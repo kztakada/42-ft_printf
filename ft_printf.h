@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 23:33:34 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/06 11:54:37 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define DEC "0123456789"
 # define HEX_UPPER "0123456789ABCDEF"
 # define HEX_LOWER "0123456789abcdef"
+# define HEX_SIGN_UPPER "0X"
+# define HEX_SIGN_LOWER "0x"
 
 typedef struct s_flags
 {
@@ -41,7 +43,7 @@ int		print_char(int c, t_flags *flags, int fd);
 int		print_str(char *str, t_flags *flags, int fd);
 int		print_int(int n, t_flags *flags, int fd);
 int		print_hex_base(unsigned int hex, t_flags *flags, char *base, int fd);
-int		print_prefix_hex(t_flags *flags, int fd);
+int		print_prefix_hex(t_flags *flags, int fd, char *base);
 int		print_ptr(unsigned long long ptr, t_flags *flags, int fd);
 int		print_percent(t_flags *flags, int fd);
 int		print_u_int(unsigned int n, t_flags *flags, int fd);
