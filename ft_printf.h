@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/06 11:54:37 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/06 15:07:28 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 # include "libft/libft.h"
+# include <errno.h>
 # include <stdarg.h>
 # define DEC "0123456789"
 # define HEX_UPPER "0123456789ABCDEF"

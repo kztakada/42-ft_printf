@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 20:13:27 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 20:13:28 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/06 15:16:21 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,25 @@ void	set_format_flags(const char **format, t_flags *flags)
 		flags->is_space = 0;
 }
 
+int	ascii_to_field_size(const char *str_pos)
+{
+	unsigned long	int_value;
+	int				digit_value;
+	unsigned long	max_limit;
+
+	int_value = 0;
+	max_limit = (unsigned long)INT_MAX;
+	while (ft_isdigit(*str_pos))
+	{
+		digit_value = *str_pos - '0';
+		if (int_value > ((max_limit - digit_value) / 10))
+			return (-1);
+		int_value = int_value * 10 + digit_value;
+		str_pos++;
+	}
+	return ((int)int_value);
+}
+
 void	set_format_field_size(const char **format, t_flags *flags,
 		va_list *args)
 {
@@ -44,7 +63,7 @@ void	set_format_field_size(const char **format, t_flags *flags,
 	}
 	else
 	{
-		flags->blank_size = ft_atoi(&**format);
+		flags->blank_size = ascii_to_field_size(&**format);
 		while (ft_isdigit(**format))
 			(*format)++;
 	}

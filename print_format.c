@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 22:07:14 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/06 15:12:38 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,10 @@ int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 	if (is_not_format)
 		return (print_unformat(format, fd));
 	prepare_format_flags(format, flags, args);
+	if (flags->blank_size == -1)
+	{
+		errno = EOVERFLOW;
+		return (-1);
+	}
 	return (print_by_format_type(fd, flags, args));
 }
