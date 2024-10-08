@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 20:32:16 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 22:49:00 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/08 00:10:08 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	print_flag_zero_hex(t_flags *flags, int fd)
 	int	count;
 
 	count = 0;
-	if (flags->is_zero == 1 && flags->precision != -1)
+	if (flags->is_zero == 1 && flags->precision != -1 && flags->precision != -2)
 	{
 		count = print_zero_loop(flags->blank_size, fd);
 		if (count < 0)
@@ -53,7 +53,7 @@ int	print_flag_zero_int(t_flags *flags, int fd)
 	int	count;
 
 	count = 0;
-	if (flags->is_zero == 1)
+	if (flags->is_zero == 1 && flags->precision != -1 && flags->precision != -2)
 	{
 		count = print_zero_loop(flags->blank_size, fd);
 		if (count < 0)

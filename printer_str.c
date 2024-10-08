@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 00:18:16 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 20:52:15 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/08 00:18:33 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	print_prefix_str(t_flags *flags, int fd)
 	int	count;
 
 	count = 0;
-	if (flags->is_zero == 1)
+	if (flags->is_zero == 1 && flags->precision != -1 && flags->precision != -2)
 		count = print_zero_loop(flags->blank_size, fd);
 	else if (flags->is_minus == 0)
 		count = print_space_loop(flags->blank_size, fd);

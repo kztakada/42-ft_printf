@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/06 17:12:00 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/07 22:41:09 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ int	print_unformat(const char **format, int fd)
 	}
 }
 
-void	prepare_format_flags(const char **format, t_flags *flags, va_list *args)
+void	flag_check_loop(const char **format, t_flags *flags, va_list *args)
 {
 	int	is_search_end;
 
 	is_search_end = 0;
-	if (is_field_digit(**format) && **format != '0')
-		set_format_field_size(format, flags, args);
 	while (**format && !is_search_end)
 	{
 		if (is_format_flag(**format))
@@ -51,11 +49,37 @@ void	prepare_format_flags(const char **format, t_flags *flags, va_list *args)
 		if (is_precision_dot(**format))
 			set_format_precision(format, flags, args);
 		if (is_format_type(**format))
-		{
-			set_format_type(format, flags);
 			is_search_end = 1;
+		if (**format && !(is_format_flag(**format) || is_field_digit(**format)
+				|| is_precision_dot(**format) || is_format_type(**format))
+			&& !(flags->precision == -1))
+		{
+			flags->precision = -1;
+			(*format)--;
+			break ;
 		}
+		if (flags->precision == -1)
+			is_search_end = 1;
 	}
+}
+
+void	prepare_format_flags(const char **format, t_flags *flags, va_list *args)
+{
+	char	*format_pos;
+
+	format_pos = (char *)*format;
+	while (*format_pos)
+	{
+		if (is_format_type(*format_pos))
+		{
+			set_format_type(format_pos, flags);
+			break ;
+		}
+		format_pos++;
+	}
+	// if (is_field_digit(**format) && **format != '0')
+	// 	set_format_field_size(format, flags, args);
+	flag_check_loop(format, flags, args);
 }
 
 int	print_by_format_type(int fd, t_flags *flags, va_list *args)
@@ -84,6 +108,7 @@ int	print_by_format_type(int fd, t_flags *flags, va_list *args)
 
 int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 {
+	int	count;
 	int	is_not_format;
 
 	(*format)++;
@@ -97,5 +122,8 @@ int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 		errno = EOVERFLOW;
 		return (-1);
 	}
-	return (print_by_format_type(fd, flags, args));
+	count = print_by_format_type(fd, flags, args);
+	if (count < 0)
+		return (-1);
+	return (count);
 }

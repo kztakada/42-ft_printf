@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:52:38 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 17:52:39 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:17:05 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ void	set_blank_size_ptr(t_flags *flags)
 
 void	set_ptr_print_conf(t_flags *flags, unsigned long long output_ptr)
 {
+	int	is_not_precision;
+
+	is_not_precision = (flags->precision == -1 || flags->precision == -2);
 	set_print_conf_counted_digits(flags, output_ptr, HEX_LOWER);
 	set_blank_size_ptr(flags);
-	set_print_conf_precision(flags);
+	if (!(is_not_precision))
+		set_print_conf_precision(flags);
 }
