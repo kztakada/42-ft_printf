@@ -6,11 +6,16 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 00:18:16 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/08 00:18:33 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/08 20:00:13 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#ifdef __linux__
+# define ISLINUX 1
+#else
+# define ISLINUX 0
+#endif
 
 int	print_prefix_str(t_flags *flags, int fd)
 {
@@ -18,7 +23,12 @@ int	print_prefix_str(t_flags *flags, int fd)
 
 	count = 0;
 	if (flags->is_zero == 1 && flags->precision != -1 && flags->precision != -2)
-		count = print_zero_loop(flags->blank_size, fd);
+	{
+		if (ISLINUX == 0)
+			count = print_zero_loop(flags->blank_size, fd);
+		if (ISLINUX == 1)
+			count = print_space_loop(flags->blank_size, fd);
+	}
 	else if (flags->is_minus == 0)
 		count = print_space_loop(flags->blank_size, fd);
 	if (count < 0)

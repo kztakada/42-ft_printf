@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/07 22:41:09 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/08 21:00:11 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,27 @@ void	flag_check_loop(const char **format, t_flags *flags, va_list *args)
 	}
 }
 
-void	prepare_format_flags(const char **format, t_flags *flags, va_list *args)
+int	linux_str_test(const char **format)
+{
+	char	*format_pos;
+
+	format_pos = (char *)*format;
+	if (!ft_isdigit(*format_pos))
+		return (0);
+	while (ft_isdigit(*format_pos))
+	{
+		format_pos++;
+	}
+	while (*format_pos != 's')
+	{
+		if (is_format_flag(*format_pos) && *format_pos != '0')
+			return (-1);
+		format_pos++;
+	}
+	return (0);
+}
+
+int	prepare_format_flags(const char **format, t_flags *flags, va_list *args)
 {
 	char	*format_pos;
 
@@ -77,9 +97,13 @@ void	prepare_format_flags(const char **format, t_flags *flags, va_list *args)
 		}
 		format_pos++;
 	}
+	if (ISLINUX == 1 && flags->type == 's')
+		if (linux_str_test(format) == -1)
+			return (-1);
 	// if (is_field_digit(**format) && **format != '0')
 	// 	set_format_field_size(format, flags, args);
 	flag_check_loop(format, flags, args);
+	return (0);
 }
 
 int	print_by_format_type(int fd, t_flags *flags, va_list *args)
@@ -116,7 +140,13 @@ int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 				|| is_field_digit(**format) || is_precision_dot(**format)));
 	if (is_not_format)
 		return (print_unformat(format, fd));
-	prepare_format_flags(format, flags, args);
+	if (prepare_format_flags(format, flags, args) == -1)
+	{
+		if (ft_putchar_fd('%', fd) < 0)
+			return (-1);
+		(*format)--;
+		return (1);
+	}
 	if (flags->blank_size == -1)
 	{
 		errno = EOVERFLOW;
