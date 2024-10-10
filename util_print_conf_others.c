@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:53:52 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/10 18:48:47 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:43:17 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	set_str_print_conf(t_flags *flags, char *str)
 	if (flags->blank_size <= flags->charactors && flags->precision != -1)
 	{
 		flags->blank_size = 0;
-		if (flags->precision == -1)
-			flags->charactors = 0;
 		return ;
 	}
 	if (flags->precision != -1)
