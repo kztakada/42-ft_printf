@@ -6,11 +6,31 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:34 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/10 17:21:02 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/10 22:23:33 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	print_format_or_char(int fd, const char **format, t_flags *flags,
+		va_list *args)
+{
+	int	count;
+
+	count = 0;
+	if (**format == '%')
+	{
+		if (*(*format + 1) == '\0')
+			return (-2);
+		count = print_format(format, flags, args, fd);
+		if (count < 0)
+			return (-1);
+		return (count);
+	}
+	if (ft_putchar_fd(**format, fd) < 0)
+		return (-1);
+	return (1);
+}
 
 int	ft_vdprintf(int fd, const char *format, va_list *args)
 {
@@ -22,21 +42,12 @@ int	ft_vdprintf(int fd, const char *format, va_list *args)
 	while (*format != '\0')
 	{
 		ft_bzero(&flags, sizeof(flags));
-		if (*format == '%')
-		{
-			if (*(format + 1) == '\0')
-				break ;
-			cnt_tmp = print_format(&format, &flags, args, fd);
-			if (cnt_tmp < 0)
-				return (-1);
-			count += cnt_tmp;
-		}
-		else
-		{
-			if (ft_putchar_fd(*format, fd) < 0)
-				return (-1);
-			count++;
-		}
+		cnt_tmp = print_format_or_char(fd, &format, &flags, args);
+		if (cnt_tmp == -2)
+			break ;
+		if (cnt_tmp == -1)
+			return (-1);
+		count += cnt_tmp;
 		format++;
 	}
 	return (count);

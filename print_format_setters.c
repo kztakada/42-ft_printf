@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_format_func.c                                :+:      :+:    :+:   */
+/*   print_format_setters.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/05 20:13:27 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/10 19:44:29 by katakada         ###   ########.fr       */
+/*   Created: 2024/10/10 22:16:31 by katakada          #+#    #+#             */
+/*   Updated: 2024/10/10 23:33:58 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	set_format_type(const char **format, t_flags *flags)
+{
+	char	*format_pos;
+
+	format_pos = (char *)*format;
+	while (*format_pos)
+	{
+		if (is_format_type(*format_pos))
+		{
+			if (*format)
+				flags->type = *format_pos;
+			break ;
+		}
+		format_pos++;
+	}
+}
 
 void	set_format_flags(const char **format, t_flags *flags)
 {
@@ -37,25 +54,6 @@ void	set_format_flags(const char **format, t_flags *flags)
 		flags->is_space = 0;
 }
 
-int	ascii_to_field_size(const char *str_pos)
-{
-	unsigned long	int_value;
-	int				digit_value;
-	unsigned long	max_limit;
-
-	int_value = 0;
-	max_limit = (unsigned long)INT_MAX;
-	while (ft_isdigit(*str_pos))
-	{
-		digit_value = *str_pos - '0';
-		if (int_value > ((max_limit - digit_value) / 10))
-			return (-1);
-		int_value = int_value * 10 + digit_value;
-		str_pos++;
-	}
-	return ((int)int_value);
-}
-
 void	set_format_field_size(const char **format, t_flags *flags,
 		va_list *args)
 {
@@ -72,24 +70,6 @@ void	set_format_field_size(const char **format, t_flags *flags,
 	}
 }
 
-int	is_precheck_flag(int c)
-{
-	return (c == '-' || c == '#' || c == ' ' || c == '+');
-}
-void	flag_precheck_loop(const char **format, t_flags *flags)
-{
-	while (**format && (is_precheck_flag(**format)))
-	{
-		if (is_format_flag(**format))
-		{
-			set_format_flags(format, flags);
-			flags->precision = -1;
-		}
-		if (is_precision_dot(**format))
-			(*format)++;
-	}
-}
-
 void	set_format_precision(const char **format, t_flags *flags, va_list *args)
 {
 	(*format)++;
@@ -101,25 +81,10 @@ void	set_format_precision(const char **format, t_flags *flags, va_list *args)
 	}
 	flags->precision = 0;
 	while ((**format) == '.')
-	{
 		(*format)++;
-	}
-	if (is_precheck_flag(**format))
+	if (!(can_use_precision_number(format, flags)))
 		return ;
-	if (flags->precision == -1)
-		return ;
-	if (!((**format == '*') || ft_isdigit(**format)))
-	{
-		flags->precision = -1;
-		return ;
-	}
-	if (**format == '*')
-	{
-		flags->precision = va_arg(*args, int);
-		(*format)++;
-	}
-	else
-		flags->precision = ft_atoi(&**format);
+	set_precision_number(format, flags, args);
 	if (!(flags->type == 'c' || flags->type == '%' || flags->type == 's'))
 		flags->is_zero = 0;
 	while (ft_isdigit(**format))
@@ -130,8 +95,31 @@ void	set_format_precision(const char **format, t_flags *flags, va_list *args)
 		flags->is_zero = 0;
 }
 
-void	set_format_type(const char *format, t_flags *flags)
+void	set_format_flags_loop(const char **format, t_flags *flags,
+		va_list *args)
 {
-	if (*format)
-		flags->type = *format;
+	int	is_search_end;
+
+	is_search_end = 0;
+	while (**format && !is_search_end)
+	{
+		if (is_format_flag(**format))
+			set_format_flags(format, flags);
+		if (is_field_digit(**format))
+			set_format_field_size(format, flags, args);
+		if (is_precision_dot(**format))
+			set_format_precision(format, flags, args);
+		if (is_format_type(**format))
+			is_search_end = 1;
+		if (**format && !(is_format_flag(**format) || is_field_digit(**format)
+				|| is_precision_dot(**format) || is_format_type(**format))
+			&& !(flags->precision == -1))
+		{
+			flags->precision = -1;
+			(*format)--;
+			break ;
+		}
+		if (flags->precision == -1)
+			is_search_end = 1;
+	}
 }

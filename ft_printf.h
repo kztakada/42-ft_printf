@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/07 23:53:51 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:33:29 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,24 @@ int		print_suffix_nbr_str(t_flags *flags, int fd);
 int		ft_putnbr_hex_base(unsigned long n, char *base, int fd);
 int		ft_putnbr_ptr_base(unsigned long long n, char *base, int fd);
 
+int		is_format_flag_after_dot(const char **format);
+int		is_format_flag_after_field_size(const char **format);
+int		can_use_precision_number(const char **format, t_flags *flags);
+
 int		is_format_flag(int c);
+int		is_not_zero_format_flag(int c);
 int		is_field_digit(int c);
 int		is_precision_dot(int c);
 int		is_number_type(int c);
 int		is_format_type(int c);
 
-void	set_format_flags(const char **format, t_flags *flags);
-void	set_format_field_size(const char **format, t_flags *flags,
+void	set_format_type(const char **format, t_flags *flags);
+void	set_format_flags_loop(const char **format, t_flags *flags,
 			va_list *args);
-void	set_format_precision(const char **format, t_flags *flags,
+
+int		ascii_to_field_size(const char *str_pos);
+void	set_precision_number(const char **format, t_flags *flags,
 			va_list *args);
-void	set_format_type(const char *format, t_flags *flags);
 
 void	set_char_print_conf(t_flags *flags);
 void	set_str_print_conf(t_flags *flags, char *str);
