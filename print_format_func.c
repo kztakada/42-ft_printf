@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 20:13:27 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/08 17:07:15 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:04:10 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,12 @@ void	flag_precheck_loop(const char **format, t_flags *flags)
 void	set_format_precision(const char **format, t_flags *flags, va_list *args)
 {
 	(*format)++;
+	if (flags->precision == -3 && flags->type == 's')
+	{
+		while (ft_isdigit(**format) || **format == '*')
+			(*format)++;
+		return ;
+	}
 	flags->precision = 0;
 	while ((**format) == '.')
 	{

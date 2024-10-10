@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/08 21:00:11 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:02:26 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,23 @@ int	linux_str_test(const char **format)
 	return (0);
 }
 
+int	str_test(const char **format)
+{
+	char	*format_pos;
+	int		check_result;
+
+	format_pos = (char *)*format;
+	check_result = 0;
+	while (*format_pos != 's')
+	{
+		if (*format_pos == '.')
+			if (is_format_flag(*(format_pos + 1)) && *(format_pos + 1) != '0')
+				check_result = -1;
+		format_pos++;
+	}
+	return (check_result);
+}
+
 int	prepare_format_flags(const char **format, t_flags *flags, va_list *args)
 {
 	char	*format_pos;
@@ -100,6 +117,9 @@ int	prepare_format_flags(const char **format, t_flags *flags, va_list *args)
 	if (ISLINUX == 1 && flags->type == 's')
 		if (linux_str_test(format) == -1)
 			return (-1);
+	if (flags->type == 's')
+		if (str_test(format) == -1)
+			flags->precision = -3;
 	// if (is_field_digit(**format) && **format != '0')
 	// 	set_format_field_size(format, flags, args);
 	flag_check_loop(format, flags, args);
