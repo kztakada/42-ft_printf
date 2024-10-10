@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 20:13:27 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/10 19:04:10 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:44:29 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	set_format_flags(const char **format, t_flags *flags)
 		if (**format == '-')
 			flags->is_minus = 1;
 		if (**format == '0' && (*(*format + 1) != '.'))
-		{
 			flags->is_zero = 1;
-		}
+		if (**format == '0' && (flags->type == 'c' || flags->type == '%'
+				|| flags->type == 's'))
+			flags->is_zero = 1;
 		if (**format == '#')
 			flags->is_sharp = 2;
 		if (**format == ' ')
@@ -116,11 +117,11 @@ void	set_format_precision(const char **format, t_flags *flags, va_list *args)
 	{
 		flags->precision = va_arg(*args, int);
 		(*format)++;
-		// return ;
 	}
 	else
 		flags->precision = ft_atoi(&**format);
-	flags->is_zero = 0;
+	if (!(flags->type == 'c' || flags->type == '%' || flags->type == 's'))
+		flags->is_zero = 0;
 	while (ft_isdigit(**format))
 		(*format)++;
 	if (flags->precision == 0)
