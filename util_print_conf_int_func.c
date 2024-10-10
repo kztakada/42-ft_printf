@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 20:17:26 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 23:40:31 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:40:06 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	set_print_conf_blank_size_int(t_flags *flags, long output_nbr)
 		precision = 0;
 	if (precision <= flags->charactors)
 		flags->blank_size = flags->blank_size - flags->charactors
-			- get_abs(flags->sign) - flags->is_sharp;
+			- get_abs(flags->sign);
 	else
-		flags->blank_size = flags->blank_size - precision - get_abs(flags->sign)
-			- flags->is_sharp;
+		flags->blank_size = flags->blank_size - precision
+			- get_abs(flags->sign);
 	if (flags->blank_size <= 0)
 		flags->blank_size = 0;
 }
