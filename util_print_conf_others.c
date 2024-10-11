@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:53:52 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/11 18:00:03 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:47:10 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void	set_char_print_conf(t_flags *flags)
 {
-	if (ISLINUX == 1)
+	if (ISLINUX == 1 && flags->type == '%')
 	{
 		flags->blank_size = 0;
 		return ;
