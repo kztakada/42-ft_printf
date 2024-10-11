@@ -6,11 +6,28 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 23:29:07 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/11 01:09:56 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/11 21:11:23 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	has_invalid_char(const char **format, char valid_type)
+{
+	char	*format_pos;
+	int		check_result;
+
+	format_pos = (char *)*format;
+	check_result = 0;
+	while (*format_pos != valid_type)
+	{
+		if (!(is_field_digit(*format_pos) || is_precision_dot(*format_pos)
+				|| is_format_type(*format_pos) || is_format_flag(*format_pos)))
+			check_result = 1;
+		format_pos++;
+	}
+	return (check_result);
+}
 
 int	is_format_flag_after_field_size(const char **format)
 {

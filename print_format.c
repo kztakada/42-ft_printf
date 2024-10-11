@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/11 18:29:46 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/11 21:12:37 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ int	set_format_type_and_flags(const char **format, t_flags *flags,
 		va_list *args)
 {
 	set_format_type(format, flags);
+	if (ISLINUX == 1)
+		if (has_invalid_char(format, flags->type))
+			return (-1);
 	if (ISLINUX == 1 && flags->type == 's')
 		if (is_format_flag_after_field_size(format))
 			return (-1);
