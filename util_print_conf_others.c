@@ -6,14 +6,25 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:53:52 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/10 23:43:17 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:00:03 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+#ifdef __linux__
+# define ISLINUX 1
+#else
+# define ISLINUX 0
+#endif
+
 void	set_char_print_conf(t_flags *flags)
 {
+	if (ISLINUX == 1)
+	{
+		flags->blank_size = 0;
+		return ;
+	}
 	if (flags->blank_size <= flags->charactors && flags->precision != -1)
 	{
 		flags->blank_size = 0;
