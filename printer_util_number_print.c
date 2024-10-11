@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 20:32:16 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/08 00:10:08 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/11 01:46:55 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	print_core_int(int fd, t_flags *flags, long output_nbr)
 	int	count;
 
 	count = 0;
-	if (flags->charactors != 0)
+	if (flags->charactors != 0 && !(flags->precision == -3 && output_nbr == 0))
 		count = ft_putnbr_fd(output_nbr, fd);
 	if (count < 0)
 		return (-1);

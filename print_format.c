@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/10 23:07:50 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/11 01:42:39 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	set_format_type_and_flags(const char **format, t_flags *flags,
 	if (ISLINUX == 1 && flags->type == 's')
 		if (is_format_flag_after_field_size(format))
 			return (-1);
-	if (flags->type == 's')
-		if (is_format_flag_after_dot(format))
+	if (flags->type == 's' || is_number_type(flags->type) || flags->type == 'p')
+		if (is_format_flag_after_dot(format, flags->type))
 			flags->precision = -3;
 	set_format_flags_loop(format, flags, args);
 	return (0);

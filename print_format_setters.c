@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:16:31 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/10 23:33:58 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/11 01:33:39 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void	set_format_field_size(const char **format, t_flags *flags,
 void	set_format_precision(const char **format, t_flags *flags, va_list *args)
 {
 	(*format)++;
-	if (flags->precision == -3 && flags->type == 's')
+	if (is_number_type(flags->type))
+		flags->is_zero = 0;
+	if (flags->precision == -3)
 	{
 		while (ft_isdigit(**format) || **format == '*')
 			(*format)++;

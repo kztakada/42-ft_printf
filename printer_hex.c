@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:56:41 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/06 11:54:50 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/11 01:42:16 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	print_core_hex(unsigned int output_hex, t_flags *flags, char *base, int fd)
 
 	count = 0;
 	if (!((flags->precision == -2 && output_hex == 0) || (flags->precision == -1
+				&& output_hex == 0) || (flags->precision == -3
 				&& output_hex == 0)))
 	{
 		count = ft_putnbr_hex_base(output_hex, base, fd);

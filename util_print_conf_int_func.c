@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 20:17:26 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/10 17:40:06 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:47:56 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	set_print_conf_blank_size_int(t_flags *flags, long output_nbr)
 	int	precision;
 	int	is_not_precision;
 
-	is_not_precision = (flags->precision == -1 || flags->precision == -2);
+	is_not_precision = (flags->precision == -1 || flags->precision == -2
+			|| (flags->type == 'u' && flags->precision == -3));
 	if (output_nbr == 0 && is_not_precision)
 		return ;
 	if (flags->precision > 0)
@@ -59,7 +60,8 @@ void	set_print_conf_precision_int(t_flags *flags)
 {
 	int	is_not_precision;
 
-	is_not_precision = (flags->precision == -1 || flags->precision == -2);
+	is_not_precision = (flags->precision == -1 || flags->precision == -2
+			|| flags->precision == -3);
 	if (is_not_precision)
 		return ;
 	if (flags->precision > flags->charactors)
