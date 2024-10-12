@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 23:29:07 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/11 21:11:23 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/12 19:57:11 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,32 @@ int	is_format_flag_after_dot(const char **format, char valid_type)
 	return (check_result);
 }
 
-int	can_use_precision_number(const char **format, t_flags *flags)
+int	has_only_format_flag_after_dot(const char **format, char valid_type)
 {
-	if (is_not_zero_format_flag(**format))
-		return (0);
-	if (flags->precision == -1)
-		return (0);
-	if (!((**format == '*') || ft_isdigit(**format)))
+	char	*format_pos;
+
+	format_pos = (char *)*format;
+	while ((*format_pos) && (*format_pos) != '.')
+		format_pos++;
+	while ((*format_pos) && *format_pos != valid_type)
 	{
-		flags->precision = -1;
-		return (0);
+		if (!(is_field_digit(*format_pos) || is_precision_dot(*format_pos)
+				|| is_format_type(*format_pos) || is_format_flag(*format_pos)))
+			return (0);
+		if (is_not_zero_format_flag(*format_pos))
+			return (1);
+		format_pos++;
 	}
-	return (1);
+	return (0);
+}
+
+int	has_no_zero_digit(const char **format)
+{
+	while ((**format) && ft_isdigit(**format))
+	{
+		if (**format != '0')
+			return (1);
+		(*format)++;
+	}
+	return (0);
 }

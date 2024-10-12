@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:41:28 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/11 18:31:47 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/12 19:57:21 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,18 @@ void	set_precision_number(const char **format, t_flags *flags, va_list *args)
 		else
 			flags->precision = ft_atoi(&**format);
 	}
+}
+
+int	can_use_precision_number(const char **format, t_flags *flags)
+{
+	if (is_not_zero_format_flag(**format))
+		return (0);
+	if (flags->precision == -1)
+		return (0);
+	if (!((**format == '*') || ft_isdigit(**format)))
+	{
+		flags->precision = -1;
+		return (0);
+	}
+	return (1);
 }

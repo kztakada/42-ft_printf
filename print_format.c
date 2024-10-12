@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/11 21:12:37 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/12 20:36:09 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,12 @@ int	set_format_type_and_flags(const char **format, t_flags *flags,
 {
 	set_format_type(format, flags);
 	if (ISLINUX == 1)
+	{
+		if (has_only_format_flag_after_dot(format, flags->type))
+			return (-2);
 		if (has_invalid_char(format, flags->type))
 			return (-1);
+	}
 	if (ISLINUX == 1 && flags->type == 's')
 		if (is_format_flag_after_field_size(format))
 			return (-1);
@@ -58,46 +62,24 @@ int	set_format_type_and_flags(const char **format, t_flags *flags,
 	return (0);
 }
 
-int	print_not_format_char(const char **format, int fd)
-{
-	if (ISLINUX == 1)
-	{
-		if (ft_putchar_fd(*--(*format), fd) < 0)
-			return (-1);
-		if (ft_putchar_fd(*++(*format), fd) < 0)
-			return (-1);
-		return (2);
-	}
-	else
-	{
-		if (ft_putchar_fd(**format, fd) < 0)
-			return (-1);
-		return (1);
-	}
-}
-
 int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 {
 	int	count;
 	int	is_not_format;
+	int	error_no;
 
 	(*format)++;
 	is_not_format = (!(is_format_type(**format) || is_format_flag(**format)
 				|| is_field_digit(**format) || is_precision_dot(**format)));
 	if (is_not_format)
 		return (print_not_format_char(format, fd));
-	if (set_format_type_and_flags(format, flags, args) == -1)
-	{
-		if (ft_putchar_fd('%', fd) < 0)
-			return (-1);
-		(*format)--;
-		return (1);
-	}
+	error_no = set_format_type_and_flags(format, flags, args);
+	if (error_no == -1)
+		return (print_only_format_specifier(format, fd));
+	if (error_no == -2)
+		return (print_invalid_after_dot_case(format, fd));
 	if (flags->blank_size == -1000 || flags->precision == -1000)
-	{
-		errno = EOVERFLOW;
-		return (-1);
-	}
+		return (print_over_flow_case());
 	count = print_by_format_type(fd, flags, args);
 	if (count < 0)
 		return (-1);

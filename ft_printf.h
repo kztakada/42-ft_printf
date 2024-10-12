@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/11 21:16:13 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/12 20:37:58 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ int		ft_printf(const char *format, ...);
 int		print_format(const char **format, t_flags *flags, va_list *args,
 			int fd);
 
+int		print_only_format_specifier(const char **format, int fd);
+int		print_not_format_char(const char **format, int fd);
+int		print_invalid_after_dot_case(const char **format, int fd);
+int		print_over_flow_case(void);
+
 int		print_char(int c, t_flags *flags, int fd);
 int		print_str(char *str, t_flags *flags, int fd);
 int		print_int(int n, t_flags *flags, int fd);
@@ -64,7 +69,8 @@ int		ft_putnbr_ptr_base(unsigned long long n, char *base, int fd);
 int		has_invalid_char(const char **format, char valid_type);
 int		is_format_flag_after_dot(const char **format, char valid_type);
 int		is_format_flag_after_field_size(const char **format);
-int		can_use_precision_number(const char **format, t_flags *flags);
+int		has_only_format_flag_after_dot(const char **format, char valid_type);
+int		has_no_zero_digit(const char **format);
 
 int		is_format_flag(int c);
 int		is_not_zero_format_flag(int c);
@@ -80,6 +86,7 @@ void	set_format_flags_loop(const char **format, t_flags *flags,
 int		ascii_to_field_size(const char *str_pos);
 void	set_precision_number(const char **format, t_flags *flags,
 			va_list *args);
+int		can_use_precision_number(const char **format, t_flags *flags);
 
 void	set_char_print_conf(t_flags *flags);
 void	set_str_print_conf(t_flags *flags, char *str);
