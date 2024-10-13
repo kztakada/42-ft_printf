@@ -6,11 +6,16 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:52:38 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/11 16:34:09 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/13 21:09:00 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#ifdef __linux__
+# define ISLINUX 1
+#else
+# define ISLINUX 0
+#endif
 
 void	set_ptr_digits(t_flags *flags, unsigned long long output_ptr,
 		char *base)
@@ -38,6 +43,8 @@ void	set_blank_size_ptr(t_flags *flags, unsigned long long output_ptr)
 		flags->blank_size = flags->blank_size - sign_0x;
 		return ;
 	}
+	if (ISLINUX == 1 && !output_ptr)
+		sign_0x = 0;
 	if (flags->precision > 0)
 		precision = flags->precision;
 	else
@@ -57,7 +64,12 @@ void	set_ptr_print_conf(t_flags *flags, unsigned long long output_ptr)
 	is_not_precision = (flags->precision == -1 || flags->precision == -2
 			|| flags->precision == -3);
 	set_print_conf_counted_digits(flags, output_ptr, HEX_LOWER);
+	if (ISLINUX == 1 && !output_ptr)
+	{
+		flags->precision = 0;
+		flags->charactors = 5;
+	}
 	set_blank_size_ptr(flags, output_ptr);
-	if (!(is_not_precision))
+	if (!(is_not_precision) && output_ptr)
 		set_print_conf_precision(flags);
 }
