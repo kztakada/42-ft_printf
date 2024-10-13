@@ -6,11 +6,16 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:34 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/10 22:23:33 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:26:42 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#ifdef __linux__
+# define ISLINUX 1
+#else
+# define ISLINUX 0
+#endif
 
 int	print_format_or_char(int fd, const char **format, t_flags *flags,
 		va_list *args)
@@ -41,6 +46,14 @@ int	ft_vdprintf(int fd, const char *format, va_list *args)
 	count = 0;
 	while (*format != '\0')
 	{
+		if (ISLINUX == 1 && *(format + 1) == '\0')
+		{
+			if (count == 0)
+				return (-1);
+			if (ft_putchar_fd(*format, fd) < 0)
+				return (-1);
+			return (count + 1);
+		}
 		ft_bzero(&flags, sizeof(flags));
 		cnt_tmp = print_format_or_char(fd, &format, &flags, args);
 		if (cnt_tmp == -2)
