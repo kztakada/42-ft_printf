@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 23:29:07 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/12 19:57:11 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:13:49 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,6 @@ int	has_invalid_char(const char **format, char valid_type)
 		format_pos++;
 	}
 	return (check_result);
-}
-
-int	is_format_flag_after_field_size(const char **format)
-{
-	char	*format_pos;
-
-	format_pos = (char *)*format;
-	if (!ft_isdigit(*format_pos))
-		return (0);
-	while (ft_isdigit(*format_pos))
-	{
-		format_pos++;
-	}
-	while (*format_pos != 's')
-	{
-		if (is_not_zero_format_flag(*format_pos))
-			return (1);
-		format_pos++;
-	}
-	return (0);
 }
 
 int	is_format_flag_after_dot(const char **format, char valid_type)

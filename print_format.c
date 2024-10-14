@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/13 20:43:14 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:13:22 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,13 @@ int	set_format_type_and_flags(const char **format, t_flags *flags,
 	set_format_type(format, flags);
 	if (ISLINUX == 1)
 	{
-		if (flags->type == '%' && is_invalid_percent_case(format))
+		if (is_invalid_percent_case(format, flags->type))
 			return (-3);
 		if (has_only_format_flag_after_dot(format, flags->type))
 			return (-2);
 		if (has_invalid_char(format, flags->type))
 			return (-1);
 	}
-	if (ISLINUX == 1 && flags->type == 's')
-		if (is_format_flag_after_field_size(format))
-			return (-1);
 	if (flags->type == 's' || is_number_type(flags->type) || flags->type == 'p')
 		if (is_format_flag_after_dot(format, flags->type))
 			flags->precision = -3;
