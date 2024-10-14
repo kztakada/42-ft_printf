@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/14 20:09:48 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:17:13 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		print_format(const char **format, t_flags *flags, va_list *args,
 			int fd);
 
 int		print_only_format_specifier(const char **format, int fd);
-int		print_not_format_char(const char **format, int fd);
+int		print_not_format_char(const char **format, int fd, t_flags *flags);
 int		print_invalid_after_dot_case(const char **format, int fd);
 int		print_over_flow_case(void);
 int		print_invalid_order_case(const char **format, int fd, t_flags *flags);

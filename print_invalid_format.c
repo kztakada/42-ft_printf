@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 20:03:40 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/12 20:35:31 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/14 20:32:51 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ int	print_only_format_specifier(const char **format, int fd)
 	return (1);
 }
 
-int	print_not_format_char(const char **format, int fd)
+int	print_not_format_char(const char **format, int fd, t_flags *flags)
 {
 	if (ISLINUX == 1)
 	{
+		flags->percent_print = 1;
 		if (ft_putchar_fd(*--(*format), fd) < 0)
 			return (-1);
 		if (ft_putchar_fd(*++(*format), fd) < 0)

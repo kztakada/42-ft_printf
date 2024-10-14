@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/14 20:09:56 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/14 20:33:02 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 	is_not_format = (!(is_format_type(**format) || is_format_flag(**format)
 				|| is_field_digit(**format) || is_precision_dot(**format)));
 	if (is_not_format)
-		return (print_not_format_char(format, fd));
+		return (print_not_format_char(format, fd, flags));
 	error_no = set_format_type_and_flags(format, flags, args);
 	if (error_no == -1)
 		return (print_only_format_specifier(format, fd));
