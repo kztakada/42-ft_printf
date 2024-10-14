@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_format_percent_validator.c                   :+:      :+:    :+:   */
+/*   print_format_validator_order.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/13 20:39:38 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/14 18:04:26 by katakada         ###   ########.fr       */
+/*   Created: 2024/10/14 18:26:08 by katakada          #+#    #+#             */
+/*   Updated: 2024/10/14 18:26:09 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	has_no_number_after_dot(const char **format, char valid_type)
 	return (1);
 }
 
-int	is_invalid_percent_case(const char **format, char valid_type)
+int	is_invalid_order_case(const char **format, char valid_type)
 {
 	const char	*format_pos;
 	int			check_result;

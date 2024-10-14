@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_invalid_percent.c                            :+:      :+:    :+:   */
+/*   print_invalid_order_case.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/13 20:42:57 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/13 20:43:37 by katakada         ###   ########.fr       */
+/*   Created: 2024/10/14 18:29:29 by katakada          #+#    #+#             */
+/*   Updated: 2024/10/14 18:29:30 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_invalid_percent_case(const char **format, int fd)
+int	print_invalid_order_case(const char **format, int fd)
 {
 	int	count;
 

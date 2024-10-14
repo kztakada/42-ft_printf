@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/14 18:16:00 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:28:32 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		print_only_format_specifier(const char **format, int fd);
 int		print_not_format_char(const char **format, int fd);
 int		print_invalid_after_dot_case(const char **format, int fd);
 int		print_over_flow_case(void);
-int		print_invalid_percent_case(const char **format, int fd);
+int		print_invalid_order_case(const char **format, int fd);
 
 int		print_char(int c, t_flags *flags, int fd);
 int		print_str(char *str, t_flags *flags, int fd);
@@ -71,7 +71,7 @@ int		has_invalid_char(const char **format, char valid_type);
 int		is_format_flag_after_dot(const char **format, char valid_type);
 int		has_only_format_flag_after_dot(const char **format, char valid_type);
 int		has_no_zero_digit(const char **format);
-int		is_invalid_percent_case(const char **format, char valid_type);
+int		is_invalid_order_case(const char **format, char valid_type);
 
 int		is_format_flag(int c);
 int		is_not_zero_format_flag(int c);

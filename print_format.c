@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/14 18:13:22 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:28:18 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	set_format_type_and_flags(const char **format, t_flags *flags,
 	set_format_type(format, flags);
 	if (ISLINUX == 1)
 	{
-		if (is_invalid_percent_case(format, flags->type))
+		if (is_invalid_order_case(format, flags->type))
 			return (-3);
 		if (has_only_format_flag_after_dot(format, flags->type))
 			return (-2);
@@ -78,7 +78,7 @@ int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 	if (error_no == -2)
 		return (print_invalid_after_dot_case(format, fd));
 	if (error_no == -3)
-		return (print_invalid_percent_case(format, fd));
+		return (print_invalid_order_case(format, fd));
 	if (flags->blank_size == -1000 || flags->precision == -1000)
 		return (print_over_flow_case());
 	count = print_by_format_type(fd, flags, args);
