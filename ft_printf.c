@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:34 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/13 17:26:42 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/14 20:06:08 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ int	ft_vdprintf(int fd, const char *format, va_list *args)
 	t_flags	flags;
 
 	count = 0;
+	ft_bzero(&flags, sizeof(flags));
 	while (*format != '\0')
 	{
-		if (ISLINUX == 1 && *(format + 1) == '\0')
+		if (ISLINUX == 1 && *(format) == '%' && *(format + 1) == '\0')
 		{
-			if (count == 0)
-				return (-1);
-			if (ft_putchar_fd(*format, fd) < 0)
-				return (-1);
-			return (count + 1);
+			if (flags.percent_print == 1)
+				if (ft_putchar_fd(*format, fd) > 0)
+					return (count + 1);
+			return (-1);
 		}
 		ft_bzero(&flags, sizeof(flags));
 		cnt_tmp = print_format_or_char(fd, &format, &flags, args);

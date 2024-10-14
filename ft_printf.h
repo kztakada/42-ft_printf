@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/14 18:28:32 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/14 20:09:48 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_flags
 	int	charactors;
 	int	sign;
 	int	type;
+	int	percent_print;
 }		t_flags;
 
 int		ft_printf(const char *format, ...);
@@ -44,7 +45,7 @@ int		print_only_format_specifier(const char **format, int fd);
 int		print_not_format_char(const char **format, int fd);
 int		print_invalid_after_dot_case(const char **format, int fd);
 int		print_over_flow_case(void);
-int		print_invalid_order_case(const char **format, int fd);
+int		print_invalid_order_case(const char **format, int fd, t_flags *flags);
 
 int		print_char(int c, t_flags *flags, int fd);
 int		print_str(char *str, t_flags *flags, int fd);
