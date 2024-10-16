@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:52:38 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/13 21:09:00 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:59:06 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,16 @@ void	set_blank_size_ptr(t_flags *flags, unsigned long long output_ptr)
 void	set_ptr_print_conf(t_flags *flags, unsigned long long output_ptr)
 {
 	int	is_not_precision;
+	int	char_number_of_nil;
 
 	is_not_precision = (flags->precision == -1 || flags->precision == -2
 			|| flags->precision == -3);
+	char_number_of_nil = 5;
 	set_print_conf_counted_digits(flags, output_ptr, HEX_LOWER);
 	if (ISLINUX == 1 && !output_ptr)
 	{
 		flags->precision = 0;
-		flags->charactors = 5;
+		flags->charactors = char_number_of_nil;
 	}
 	set_blank_size_ptr(flags, output_ptr);
 	if (!(is_not_precision) && output_ptr)

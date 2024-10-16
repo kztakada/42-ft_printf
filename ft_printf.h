@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/16 18:46:36 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 20:09:04 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		print_invalid_order_case(const char **format, t_flags *flags,
 			va_list *args, int fd);
 
 int		print_char(int c, t_flags *flags, int fd);
-int		print_str(char *str, t_flags *flags, int fd);
+int		print_str(const char *str, t_flags *flags, int fd);
 int		print_int(int n, t_flags *flags, int fd);
 int		print_hex_base(unsigned int hex, t_flags *flags, char *base, int fd);
 int		print_prefix_hex(t_flags *flags, int fd, char *base);
@@ -67,7 +67,7 @@ int		force_print_flags(t_flags *flags, int fd);
 int		force_print_number(int fd, int number);
 int		force_print_precision(t_flags *flags, int fd);
 
-int		ft_putnbr_hex_base(unsigned long n, char *base, int fd);
+int		ft_putnbr_hex_base(unsigned long long n, char *base, int fd);
 int		ft_putnbr_ptr_base(unsigned long long n, char *base, int fd);
 
 int		is_format_flag_after_dot(const char **format, char valid_type);
@@ -95,7 +95,7 @@ void	force_set_field_size(const char **format, t_flags *flags,
 int		force_set_precision(const char **format, t_flags *flags, va_list *args);
 
 void	set_char_print_conf(t_flags *flags);
-void	set_str_print_conf(t_flags *flags, char *str);
+void	set_str_print_conf(t_flags *flags, const char *str);
 void	set_ptr_print_conf(t_flags *flags, unsigned long long output_ptr);
 void	set_int_print_conf(t_flags *flags, long *output_nbr);
 void	set_hex_print_conf(t_flags *flags, unsigned int output_hex, char *base);

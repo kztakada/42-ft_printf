@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:53:52 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/11 18:47:10 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:38:59 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set_char_print_conf(t_flags *flags)
 	}
 }
 
-void	set_str_print_conf(t_flags *flags, char *str)
+void	set_str_print_conf(t_flags *flags, const char *str)
 {
 	flags->charactors = ft_strlen(str);
 	if (flags->precision == -2 || flags->precision == -3)

@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 23:29:07 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/16 18:45:28 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:08:13 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	is_format_flag_after_dot(const char **format, char valid_type)
 {
-	char	*format_pos;
-	int		check_result;
+	const char	*format_pos;
+	int			check_result;
 
-	format_pos = (char *)*format;
+	format_pos = *format;
 	check_result = 0;
 	while (*format_pos != valid_type)
 	{

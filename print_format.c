@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/16 18:48:56 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:37:02 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	print_by_format_type(int fd, t_flags *flags, va_list *args)
 	if (flags->type == 'c')
 		return (print_char(va_arg(*args, int), flags, fd));
 	if (flags->type == 's')
-		return (print_str(va_arg(*args, char *), flags, fd));
+		return (print_str(va_arg(*args, const char *), flags, fd));
 	if (flags->type == 'd' || flags->type == 'i')
 		return (print_int(va_arg(*args, int), flags, fd));
 	if (flags->type == 'x')

@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:17:10 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/05 23:33:39 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 20:09:27 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_putnbr_ptr_base(unsigned long long n, char *base, int fd)
 	return (count);
 }
 
-int	ft_putnbr_hex_base(unsigned long n, char *base, int fd)
+int	ft_putnbr_hex_base(unsigned long long n, char *base, int fd)
 {
 	int	count;
 	int	cnt_tmp;

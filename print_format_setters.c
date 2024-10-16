@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:16:31 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/11 01:33:39 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:07:25 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	set_format_type(const char **format, t_flags *flags)
 {
-	char	*format_pos;
+	const char	*format_pos;
 
-	format_pos = (char *)*format;
+	format_pos = *format;
 	while (*format_pos)
 	{
 		if (is_format_type(*format_pos))
 		{
-			if (*format)
+			if (*format_pos)
 				flags->type = *format_pos;
 			break ;
 		}
