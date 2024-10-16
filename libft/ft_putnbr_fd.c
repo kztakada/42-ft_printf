@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:51:50 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/15 19:41:15 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 20:49:11 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_putnbr_fd(long n, int fd)
 {
-	long number;
-	int count;
-	int cnt_tmp;
+	long	number;
+	int		count;
+	int		cnt_tmp;
 
 	number = n;
 	count = 0;
