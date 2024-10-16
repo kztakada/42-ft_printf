@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:26:08 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/14 18:26:09 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:03:09 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	is_invalid_order_case(const char **format, char valid_type)
 				valid_type);
 	if (ft_isdigit(*format_pos))
 		check_result = has_no_dot_after_digit(&format_pos, valid_type);
-	if (*format_pos == '*')
+	else if (*format_pos == '*')
 		check_result = has_no_dot_after_star(&format_pos, valid_type);
 	if (*format_pos == '.')
 		check_result = has_no_number_after_dot(&format_pos, valid_type);

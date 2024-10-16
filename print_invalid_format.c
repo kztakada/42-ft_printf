@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 20:03:40 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/14 20:32:51 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:23:49 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,25 @@ int	print_only_format_specifier(const char **format, int fd)
 	return (1);
 }
 
-int	print_not_format_char(const char **format, int fd, t_flags *flags)
+int	print_invalid_char_start_case(const char **format, int fd)
 {
+	int	count;
+
+	count = 0;
 	if (ISLINUX == 1)
 	{
-		flags->percent_print = 1;
-		if (ft_putchar_fd(*--(*format), fd) < 0)
-			return (-1);
-		if (ft_putchar_fd(*++(*format), fd) < 0)
-			return (-1);
-		return (2);
+		(*format)--;
+		while (**format != '\0')
+		{
+			if (ft_putchar_fd(**format, fd) < 0)
+				return (-1);
+			count++;
+			(*format)++;
+			if (**format != '%')
+				break ;
+		}
+		(*format)--;
+		return (count);
 	}
 	else
 	{

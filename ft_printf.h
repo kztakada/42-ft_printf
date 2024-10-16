@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/14 21:17:13 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:24:15 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_flags
 	int	charactors;
 	int	sign;
 	int	type;
-	int	percent_print;
 }		t_flags;
 
 int		ft_printf(const char *format, ...);
@@ -42,10 +41,11 @@ int		print_format(const char **format, t_flags *flags, va_list *args,
 			int fd);
 
 int		print_only_format_specifier(const char **format, int fd);
-int		print_not_format_char(const char **format, int fd, t_flags *flags);
+int		print_invalid_char_start_case(const char **format, int fd);
 int		print_invalid_after_dot_case(const char **format, int fd);
 int		print_over_flow_case(void);
-int		print_invalid_order_case(const char **format, int fd, t_flags *flags);
+int		print_invalid_order_case(const char **format, t_flags *flags,
+			va_list *args, int fd);
 
 int		print_char(int c, t_flags *flags, int fd);
 int		print_str(char *str, t_flags *flags, int fd);
@@ -64,6 +64,10 @@ int		print_flag_zero_hex(t_flags *flags, int fd);
 int		print_flag_zero_int(t_flags *flags, int fd);
 int		print_core_int(int fd, t_flags *flags, long output_nbr);
 int		print_suffix_nbr_str(t_flags *flags, int fd);
+
+int		force_print_flags(t_flags *flags, int fd);
+int		force_print_number(int fd, int number);
+int		force_print_precision(t_flags *flags, int fd);
 
 int		ft_putnbr_hex_base(unsigned long n, char *base, int fd);
 int		ft_putnbr_ptr_base(unsigned long long n, char *base, int fd);
@@ -89,6 +93,11 @@ int		ascii_to_field_size(const char *str_pos);
 void	set_precision_number(const char **format, t_flags *flags,
 			va_list *args);
 int		can_use_precision_number(const char **format, t_flags *flags);
+
+void	force_set_format_flags(const char **format, t_flags *flags);
+void	force_set_field_size(const char **format, t_flags *flags,
+			va_list *args);
+int		force_set_precision(const char **format, t_flags *flags, va_list *args);
 
 void	set_char_print_conf(t_flags *flags);
 void	set_str_print_conf(t_flags *flags, char *str);
