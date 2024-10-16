@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:13:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/16 18:30:25 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:48:56 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,8 @@ int	set_format_type_and_flags(const char **format, t_flags *flags,
 		va_list *args)
 {
 	set_format_type(format, flags);
-	if (ISLINUX == 1)
-	{
-		if (is_invalid_order_case(format, flags->type))
-			return (-3);
-		if (has_only_format_flag_after_dot(format, flags->type))
-			return (-2);
-		if (has_invalid_char(format, flags->type))
-			return (-1);
-	}
+	if (ISLINUX == 1 && is_invalid_order_case(format, flags->type))
+		return (-3);
 	if (flags->type == 's' || is_number_type(flags->type) || flags->type == 'p')
 		if (is_format_flag_after_dot(format, flags->type))
 			flags->precision = -3;
@@ -73,10 +66,6 @@ int	print_format(const char **format, t_flags *flags, va_list *args, int fd)
 	if (is_not_format)
 		return (print_invalid_char_start_case(format, fd));
 	error_no = set_format_type_and_flags(format, flags, args);
-	if (error_no == -1)
-		return (print_only_format_specifier(format, fd));
-	if (error_no == -2)
-		return (print_invalid_after_dot_case(format, fd));
 	if (error_no == -3)
 		return (print_invalid_order_case(format, flags, args, fd));
 	if (flags->blank_size == -1000 || flags->precision == -1000)

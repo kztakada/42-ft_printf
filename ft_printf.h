@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:11:53 by katakada          #+#    #+#             */
-/*   Updated: 2024/10/16 18:24:15 by katakada         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:46:36 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ int		ft_printf(const char *format, ...);
 int		print_format(const char **format, t_flags *flags, va_list *args,
 			int fd);
 
-int		print_only_format_specifier(const char **format, int fd);
 int		print_invalid_char_start_case(const char **format, int fd);
-int		print_invalid_after_dot_case(const char **format, int fd);
 int		print_over_flow_case(void);
 int		print_invalid_order_case(const char **format, t_flags *flags,
 			va_list *args, int fd);
@@ -72,10 +70,7 @@ int		force_print_precision(t_flags *flags, int fd);
 int		ft_putnbr_hex_base(unsigned long n, char *base, int fd);
 int		ft_putnbr_ptr_base(unsigned long long n, char *base, int fd);
 
-int		has_invalid_char(const char **format, char valid_type);
 int		is_format_flag_after_dot(const char **format, char valid_type);
-int		has_only_format_flag_after_dot(const char **format, char valid_type);
-int		has_no_zero_digit(const char **format);
 int		is_invalid_order_case(const char **format, char valid_type);
 
 int		is_format_flag(int c);
