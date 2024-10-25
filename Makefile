@@ -6,7 +6,7 @@
 #    By: katakada <katakada@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:55:18 by katakada          #+#    #+#              #
-#    Updated: 2024/10/17 17:44:57 by katakada         ###   ########.fr        #
+#    Updated: 2024/10/25 21:03:20 by katakada         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
 all: $(NAME)
+
+bonus: all
 
 clean:
 	make fclean -C ./libft
