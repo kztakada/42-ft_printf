@@ -6,14 +6,13 @@
 #    By: katakada <katakada@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:55:18 by katakada          #+#    #+#              #
-#    Updated: 2024/10/28 22:48:40 by katakada         ###   ########.fr        #
+#    Updated: 2024/10/28 22:55:21 by katakada         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRCS = $(wildcard *.c)
-SRCS := $(filter-out main.c, $(SRCS))
 LIBFT = ./libft/libft.a
 OBJS = $(SRCS:.c=.o)
 CC = cc
