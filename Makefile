@@ -6,7 +6,7 @@
 #    By: katakada <katakada@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:55:18 by katakada          #+#    #+#              #
-#    Updated: 2024/10/25 21:03:20 by katakada         ###   ########.fr        #
+#    Updated: 2024/10/28 22:48:40 by katakada         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,4 +46,4 @@ norm :
 	norminette -R CheckForbiddenSourceHeader $(SRCS)
 	norminette -R CheckDefine *.h
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re norm
